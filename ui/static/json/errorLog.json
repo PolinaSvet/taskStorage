@@ -1,0 +1,72 @@
+[
+  {
+    "timestamp": "2024-07-22T13:04:00.4976355+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 13:04:00.491: map[id:1 name:Label_0000000001wwww] UPDATE или DELETE в таблице \"labels\" нарушает ограничение внешнего ключа \"tasks_labels_label_id_fkey\" таблицы \"tasks_labels\"SQL-оператор: \"DELETE FROM labels WHERE id = (json_data -\u003e\u003e 'id')::BIGINT\"\nфункция PL/pgSQL labels_func_delete(jsonb), строка 8, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-22T13:04:06.7757291+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 13:04:06.775: map[id:1 name:Label_0000000001wwwwjj] id=1"
+  },
+  {
+    "timestamp": "2024-07-22T13:13:38.0010144+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 13:13:38.000: map[id:1 name:po11122hhhhhhh] UPDATE или DELETE в таблице \"users\" нарушает ограничение внешнего ключа \"tasks_author_id_fkey\" таблицы \"tasks\"SQL-оператор: \"DELETE FROM users WHERE id = (json_data -\u003e\u003e 'id')::BIGINT\"\nфункция PL/pgSQL users_func_delete(jsonb), строка 8, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-22T13:13:39.7853022+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 13:13:39.784: map[id:2 name:44444444] UPDATE или DELETE в таблице \"users\" нарушает ограничение внешнего ключа \"tasks_author_id_fkey\" таблицы \"tasks\"SQL-оператор: \"DELETE FROM users WHERE id = (json_data -\u003e\u003e 'id')::BIGINT\"\nфункция PL/pgSQL users_func_delete(jsonb), строка 8, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-22T13:13:43.0154648+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 13:13:43.014: map[id:2 name:44444444333] id=2"
+  },
+  {
+    "timestamp": "2024-07-22T13:46:58.0898429+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 13:46:58.088: map[id:1 name:Label_0000000001111] id=1"
+  },
+  {
+    "timestamp": "2024-07-22T13:47:04.4522891+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 13:47:04.451: map[id:2 name:Label_0000000002] id=2"
+  },
+  {
+    "timestamp": "2024-07-22T13:47:07.3867491+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 13:47:07.386: map[id:2 name:Label_0000000002] id=101"
+  },
+  {
+    "timestamp": "2024-07-22T13:47:18.1350794+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 13:47:18.135: map[id:1 name:User_0000000001444] id=1"
+  },
+  {
+    "timestamp": "2024-07-22T13:47:20.3232452+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 13:47:20.322: map[id:1 name:User_0000000001444] id=101"
+  },
+  {
+    "timestamp": "2024-07-22T13:47:23.4035712+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 13:47:23.402: map[id:1 name:User_0000000001444] id=1"
+  },
+  {
+    "timestamp": "2024-07-22T14:02:17.4654309+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 14:02:17.464: {labels_insert map[id:0 name:-]} id=102"
+  },
+  {
+    "timestamp": "2024-07-22T14:02:22.2737074+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 14:02:22.273: {labels_update map[id:0 name:-]} Parameter value cannot be nullфункция PL/pgSQL labels_func_update(jsonb), строка 12, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-22T14:02:29.1116462+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 14:02:29.111: {labels_update map[id:1 name:Label_0000000001]} id=1"
+  }
+]

@@ -1,0 +1,132 @@
+{{define "block_head"}}
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>MODULE 30</title>
+   <meta name="author" content="Svetlichnaya Polina">
+   <meta name="description" content="">
+  <link rel="icon" type="image/x-icon" href="/ui/static/img/task_img.png">
+  <script src="/ui/static/script/script.js"></script>
+   <!-- Tailwind -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+   <style>
+       @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+       .font-family-karla { font-family: Consolas; }
+       .bg-sidebar { background: #838db4; }
+       .cta-btn { color: #838db4; }
+       .upgrade-btn { background: #55608b; }
+       .upgrade-btn:hover { background: #55608b; }
+       .active-nav-link { background: #55608b; }
+       .nav-item:hover { background: #55608b; }
+       .account-link:hover { background: #55608b; }
+       .scroll-svg {  overflow: scroll; max-width: 100%; overflow-y: hidden;}
+       .tooltip { position: relative; display: inline-block; }
+       .tooltip .tooltiptext { visibility: hidden;  width: 200px;  background-color: black;  color: #fff;  text-align: center;  border-radius: 6px;  padding: 5px 0;  position: absolute;  z-index: 1;  top: -5px;  left: 105%;}
+       .tooltip:hover .tooltiptext { visibility: visible;}
+       .tab {  overflow: hidden;  border: 1px solid #ccc;  background-color: #f1f1f1;} /* Style the tab */
+       .tab button {  background-color: inherit;  float: left;   border: 1px solid #ccccccce; border-top: none; border-bottom: none; border-left: none; outline: none;  cursor: pointer;  padding: 14px 16px;  transition: 0.3s;  font-size: 17px;} /* Style the buttons inside the tab */
+       .tab button:hover {  background-color: #ddd;} /* Change background color of buttons on hover */
+       .tab button.active {  background-color: #ccc;} /* Create an active/current tablink class */
+       .tabcontent {  display: none;  padding: 6px 12px;  border: 1px solid #ccc;  border-top: none;} /* Style the tab content */
+   </style>
+</head>
+{{end}}
+
+{{define "block_left_menu"}}
+<!-- Left Menu -->
+<aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+   <div class="p-6">
+       <a href="/" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">MODULE 30</a>
+   </div>
+   
+ <nav class="text-white text-base font-semibold pt-3">
+    <a href="/tasks" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+       <i class="fas fa-table mr-3"></i>
+           Tasks
+       </a>
+    <a href="/formLabels" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+           <i class="fas fa-align-left mr-3"></i>
+           Labels
+       </a>
+    <a href="/formUsers" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+           <i class="fas fa-user-circle mr-3"></i>
+           Users
+       </a>
+    <a href="/errorLog" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <i class="fas fa-exclamation-circle mr-3"></i>
+        Messages Log
+       </a> 
+   </nav>
+   <a href="https://github.com/PolinaSvet/web_example_v001.git" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
+       <i class="fas fa-arrow-circle-up mr-3"></i>
+       Go to GitHub
+   </a>
+</aside>
+{{end}}
+
+{{define "block_desktop_header"}}
+        <!-- Desktop Header -->
+        <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
+         <div class="w-1/2"></div>
+         <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
+             <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+                 <img src="/ui/static/img/task_img.png">
+             </button>
+             <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
+             <div x-show="isOpen" class="absolute w-auto bg-white rounded-lg shadow-lg py-2 mt-16">
+                 <a href="#" class="block px-4 py-2 account-link hover:text-white">Task Project Module 30</a>
+             </div>
+         </div>
+     </header>
+
+     <!-- Mobile Header & Nav -->
+     <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">
+         <div class="flex items-center justify-between">
+             <a href="/" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">MODULE 30</a>
+             <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
+                 <i x-show="!isOpen" class="fas fa-bars"></i>
+                 <i x-show="isOpen" class="fas fa-times"></i>
+             </button>
+         </div>
+
+         <!-- Dropdown Nav -->
+         <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
+             <a href="/tasks" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
+                 <i class="fas fa-table mr-3"></i>
+                 Tasks
+             </a>
+         <a href="/formLabels" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                 <i class="fas fa-align-left mr-3"></i>
+                 Labels
+             </a>
+             <a href="/formUsers" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                 <i class="fas fa-user-circle mr-3"></i>
+                 Users
+             </a>
+             <a href="/errorLog" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <i class="fas fa-exclamation-circle mr-3"></i>
+                Messages Log
+            </a>
+             <button class="w-full bg-white cta-btn font-semibold py-2 mt-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                 <i class="fas fa-arrow-circle-up mr-3"></i> Go to GitHub
+             </button>
+         </nav>
+     </header>
+{{end}}
+
+{{define "block_footer"}}
+<footer class="w-full bg-white text-right p-4">
+   Built by <a target="_blank" class="underline">Svetlichnaya Polina</a>.
+</footer>
+{{end}}
+
+{{define "block_script"}}
+<!-- AlpineJS -->
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+{{end}}
+
+
+
+

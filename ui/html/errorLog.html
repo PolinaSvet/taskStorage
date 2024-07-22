@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+{{template "block_head"}}
+<body class="bg-gray-100 font-family-karla flex" onload="refreshForm_004()">
+	{{template "block_left_menu"}}
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+        {{template "block_desktop_header"}}
+        <!-- Desktop Header -->
+        <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+          <main class="w-full flex-grow p-6">
+              <h1 class="text-3xl text-black pb-6">{{.PageName}}</h1>
+
+              <!-- Content Start -->
+
+              <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                              Timestamp
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                              Type
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                              Message
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range .Values}}
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                              {{.Timestamp}}
+                            </th>
+                            <td class="px-6 py-4">
+                              {{.Type}}
+                            </td>
+                            <td class="px-6 py-4">
+                              {{.Message}}
+                            </td>
+                        </tr>
+                        {{end}}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Content End -->
+
+          </main>
+  
+          {{template "block_footer"}}
+      </div>
+
+    {{template "block_script"}}
+</body>
+</html>
