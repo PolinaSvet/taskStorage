@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{{template "block_head"}}
+<body class="bg-gray-100 font-family-karla flex"  onload="tasksAction('select_all')">
+	{{template "block_left_menu"}}
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+        {{template "block_desktop_header"}}
+        <!-- Desktop Header -->
+        <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+            <main class="w-full flex-grow p-2">
+                <h1 class="text-xl text-black pb-2">{{.PageDescribe}}</h1>
+
+                <!-- Content Start -->
+              <header class="w-full items-center bg-white py-2 px-2 hidden sm:flex top-3">
+                      <div class="flex flex-col justify-between p-1 leading-normal">
+                          <h5 class="mb-2 text font-bold tracking-tight text-gray-900 dark:text-white">Tasks actions:</h5>
+                          <br><br>
+                          <div class="inline-flex rounded-md space-x-4 w-full" role="group">
+                          
+                              <div class="relative">
+                                <input type="text" id="inputId" value="0" readonly class="block rounded-t-lg px-2.5 pb-1.5 pt-4 w-24 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <label for="inputId" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-3 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Id:</label>
+                              </div>
+
+                              <div class="relative">
+                                <input type="text" id="inputTitle" value="-" class="block rounded-t-lg px-2.5 pb-1.5 pt-4 w-64 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <label for="inputTitle" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-3 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Name:</label>
+                              </div>
+
+               
+                          </div>
+                         
+                      </div>
+              </header>
+              <br>
+              <p id="output"></p> 
+         
+              <!-- Content End -->
+
+            </main>
+    
+            {{template "block_footer"}}
+        </div>
+    </div>
+    {{template "block_script"}}
+</body>
+</html>

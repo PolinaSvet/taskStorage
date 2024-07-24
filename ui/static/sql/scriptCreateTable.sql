@@ -2,7 +2,7 @@
 	script to create database structure
 */
 
-DROP TABLE IF EXISTS stages, tasks_labels, tasks, labels, users;
+DROP TABLE IF EXISTS tasks_labels, tasks, labels, users;
 
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
@@ -25,7 +25,8 @@ CREATE TABLE tasks (
     assigned_id BIGINT REFERENCES users(id) DEFAULT 0, 
     title TEXT NOT NULL, 
     content TEXT NOT NULL,
-	finish BOOL NOT NULL DEFAULT FALSE
+	finish BOOL NOT NULL DEFAULT FALSE,
+	delay BOOL NOT NULL DEFAULT FALSE
 );
 COMMENT ON TABLE tasks IS 'Table for storing tasks';
 COMMENT ON COLUMN tasks.dt_closed_expect IS 'the task should be closed by this time';
@@ -38,14 +39,6 @@ CREATE TABLE tasks_labels (
     label_id BIGINT REFERENCES labels(id)
 );
 COMMENT ON TABLE tasks_labels IS 'Table for storing many-to-many connection between tasks and labels';
-
-CREATE TABLE stages (
-	id BIGSERIAL PRIMARY KEY,
-    task_id BIGINT REFERENCES tasks(id),
-	percent INTEGER NOT NULL CHECK (percent >= 0 AND percent <= 100),
-	content TEXT NOT NULL
-);
-COMMENT ON TABLE stages IS 'Table for storing stages';
 
 
 

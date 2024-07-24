@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/jackc/pgtype"
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
@@ -14,6 +15,9 @@ var mapFunctionSql = map[string]string{
 	"labels_insert": "labels_func_insert",
 	"labels_update": "labels_func_update",
 	"labels_delete": "labels_func_delete",
+	"tasks_insert":  "tasks_func_insert",
+	"tasks_update":  "tasks_func_update",
+	"tasks_delete":  "tasks_func_delete",
 }
 
 // Хранилище данных.
@@ -136,4 +140,85 @@ func (s *Storage) SelectLabels(labelId int) ([]Label, error) {
 		label = append(label, t)
 	}
 	return label, rows.Err()
+}
+
+// Table: Tasks
+type TaskView struct {
+	Id               int
+	Dt_opened        string
+	Dt_closed_expect string
+	Dt_closed_finish string
+	Author           string
+	Assigned         string
+	Title            string
+	Content          string
+	Finish           bool
+	Delay            bool
+	Label_names      []string
+}
+
+func (s *Storage) IUDTasks(nameFunction string, jsonRequest map[string]interface{}) (int, error) {
+
+	funcSql, ok := mapFunctionSql[nameFunction]
+	if !ok {
+		return 0, fmt.Errorf("error: no name function %s", nameFunction)
+	}
+
+	println(nameFunction, funcSql, jsonRequest)
+
+	var jsonResponse SqlResponse
+	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1)", jsonRequest).Scan(&jsonResponse)
+	if err != nil {
+		return 0, err
+	}
+	if jsonResponse.Err != "" {
+		return 0, fmt.Errorf(jsonResponse.Err)
+	}
+	return jsonResponse.ID, nil
+}
+
+func (s *Storage) ViewTasks(jsonRequest map[string]interface{}) ([]TaskView, error) {
+	rows, err := s.db.Query(context.Background(), `
+		SELECT * FROM tasks_func_view($1);
+	`,
+		jsonRequest,
+	)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var task []TaskView
+	var labelNamesJSON pgtype.TextArray
+
+	for rows.Next() {
+		var t TaskView
+		err = rows.Scan(
+			&t.Id,
+			&t.Dt_opened,
+			&t.Dt_closed_expect,
+			&t.Dt_closed_finish,
+			&t.Author,
+			&t.Assigned,
+			&t.Title,
+			&t.Content,
+			&t.Finish,
+			&t.Delay,
+			&labelNamesJSON,
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		labelNames := make([]string, len(labelNamesJSON.Elements))
+		for i, elem := range labelNamesJSON.Elements {
+			labelNames[i] = elem.String
+		}
+		t.Label_names = labelNames
+
+		//fmt.Printf("%#v\n", labelNamesJSON)
+
+		task = append(task, t)
+	}
+	return task, rows.Err()
 }

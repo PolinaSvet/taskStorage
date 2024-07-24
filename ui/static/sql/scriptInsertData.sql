@@ -1,8 +1,8 @@
 /*
-	2024/07/11:	script generates data
+	script generates data
 */
 
-TRUNCATE TABLE stages, tasks_labels, tasks, labels, users;
+TRUNCATE TABLE tasks_labels, tasks, labels, users;
 
 -- Сбросьте значения всех последовательностей
 DO $$DECLARE r RECORD;
@@ -39,6 +39,58 @@ BEGIN
 		str001 := 'Label_' || LPAD(i::TEXT, 10, '0');
     	PERFORM * FROM labels_func_insert(('{
 				  "name": "'||str001||'"
+				}')::jsonb);
+    	i := i + 1;
+  	END LOOP;
+
+	--tasks: insert
+	i:=1;
+	WHILE i <= 50 LOOP
+		str001 := 'Title_' || LPAD(i::TEXT, 10, '0');
+		str002 := 'Content_' || LPAD(i::TEXT, 10, '0');
+		bi001 := extract(epoch from now())::BIGINT;
+		bi002 := extract(epoch from now())::BIGINT+ (i * 24 * 60 * 60) ;
+    	PERFORM * FROM tasks_func_insert(('{
+		  "dt_opened": '||bi001||',
+		  "dt_closed_expect": '||bi002||',
+		  "author_id": '||i||',
+		  "assigned_id": '||(i+1)||',
+		  "title": "'||str001||'",
+		  "content": "'||str002||'"
+		}')::jsonb);
+
+		str001 := 'Title_' || LPAD((i+10)::TEXT, 10, '0');
+		str002 := 'Content_' || LPAD((i+10)::TEXT, 10, '0');
+		bi001 := extract(epoch from now())::BIGINT;
+		bi002 := extract(epoch from now())::BIGINT+ (i * 24 * 60 * 60) ;
+    	PERFORM * FROM tasks_func_insert(('{
+		  "dt_opened": '||bi001||',
+		  "dt_closed_expect": '||bi002||',
+		  "author_id": '||i||',
+		  "assigned_id": '||(i)||',
+		  "title": "'||str001||'",
+		  "content": "'||str002||'"
+		}')::jsonb);
+
+    	i := i + 1;
+  	END LOOP;
+
+	--tasks_labels: insert
+	i:=1;
+	WHILE i <= 10 LOOP
+    	PERFORM * FROM tasks_labels_func_insert(('{
+		  		"task_id": '||i||',
+		  		"label_id": '||i||'
+				}')::jsonb);
+
+		PERFORM * FROM tasks_labels_func_insert(('{
+				  "task_id": '||i||',
+				  "label_id": '||(i+1)||'
+				}')::jsonb);
+		
+		PERFORM * FROM tasks_labels_func_insert(('{
+				  "task_id": '||(i+5)||',
+				  "label_id": '||(i+3)||'
 				}')::jsonb);
     	i := i + 1;
   	END LOOP;

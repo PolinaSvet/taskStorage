@@ -12,15 +12,15 @@ import (
 	"taskdb/cmd/pkg/storage/postgres"
 )
 
-type UsersHtml struct {
+type TasksHtml struct {
 	Error  string
 	Inform string
-	Values []postgres.User
+	Values []postgres.TaskView
 }
 
-func processHandlerFormUsersActions(w http.ResponseWriter, r *http.Request) {
+func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 
-	if r.URL.Path != "/formUsersList" {
+	if r.URL.Path != "/formTasksList" {
 		return
 	}
 
@@ -38,7 +38,7 @@ func processHandlerFormUsersActions(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		tmpl, err := template.ParseFiles(UseresPageList, TemplatePage)
+		tmpl, err := template.ParseFiles(TasksPageList, TemplatePage)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -48,8 +48,8 @@ func processHandlerFormUsersActions(w http.ResponseWriter, r *http.Request) {
 		infStr := ""
 
 		//insert, update, delete data
-		if strings.Contains(requestData.Action, "users_") {
-			id, err := DBase.IUDUsers(requestData.Action, requestData.Value)
+		if strings.Contains(requestData.Action, "tasks_") {
+			id, err := DBase.IUDTasks(requestData.Action, requestData.Value)
 			if err != nil || id == 0 {
 				errStr = fmt.Sprintf("Error %v: %v %v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, err)
 				logger.SetLogError(fmt.Errorf(errStr))
@@ -60,14 +60,20 @@ func processHandlerFormUsersActions(w http.ResponseWriter, r *http.Request) {
 		}
 
 		//select all data
-		users, err := DBase.SelectUsers(0)
+
+		jsonData := `{
+			"id": 0
+		  }`
+		var data map[string]interface{}
+		err = json.Unmarshal([]byte(jsonData), &data)
+		tasks, err := DBase.ViewTasks(data)
 		if err != nil {
 			errStr = err.Error()
 			logger.SetLogError(fmt.Errorf(errStr))
 		}
-		usersHtml_ := UsersHtml{Error: errStr, Inform: infStr, Values: users}
+		tasksHtml_ := TasksHtml{Error: errStr, Inform: infStr, Values: tasks}
 
-		err = tmpl.Execute(w, usersHtml_)
+		err = tmpl.Execute(w, tasksHtml_)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -80,15 +86,15 @@ func processHandlerFormUsersActions(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func ServeHTTPFormUsers(w http.ResponseWriter, r *http.Request) {
+func ServeHTTPFormTasks(w http.ResponseWriter, r *http.Request) {
 
-	tmpl, err := template.ParseFiles(UseresPage, TemplatePage)
+	tmpl, err := template.ParseFiles(TasksPage, TemplatePage)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	data := TypePage{PageDescribe: "Users List"}
+	data := TypePage{PageDescribe: "Tasks List"}
 
 	err = tmpl.Execute(w, data)
 	if err != nil {

@@ -20,6 +20,10 @@ type LabelsHtml struct {
 
 func processHandlerFormLabelsActions(w http.ResponseWriter, r *http.Request) {
 
+	if r.URL.Path != "/formLabelsList" {
+		return
+	}
+
 	if r.Method == http.MethodPost {
 
 		type RequestData struct {

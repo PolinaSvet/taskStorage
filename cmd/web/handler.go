@@ -13,14 +13,14 @@ const (
 	ErrorPage    string = "ui/html/error.html"
 	TemplatePage string = "ui/html/templates.html"
 	ErrorLogPage string = "ui/html/errorLog.html"
-	TasksPage    string = "ui/html/tasks.html"
-	//UseresPages  string = "ui/html/users.html"
-	//LabelsPages  string = "ui/html/labels.html"
+	TasksPages   string = "ui/html/tasks.html"
 
 	UseresPage     string = "ui/html/formUsers.html"
 	UseresPageList string = "ui/html/formUsersList.html"
 	LabelsPage     string = "ui/html/formLabels.html"
 	LabelsPageList string = "ui/html/formLabelsList.html"
+	TasksPage      string = "ui/html/formTasks.html"
+	TasksPageList  string = "ui/html/formTasksList.html"
 )
 
 var DBase *postgres.Storage
@@ -69,6 +69,9 @@ func Handler() {
 
 	mux.HandleFunc("/formLabels/", ServeHTTPFormLabels)
 	mux.HandleFunc("/formLabelsList", processHandlerFormLabelsActions)
+
+	mux.HandleFunc("/formTasks/", ServeHTTPFormTasks)
+	mux.HandleFunc("/formTasksList", processHandlerFormTasksActions)
 
 	mux.HandleFunc("/errorLog/", ServeHTTPerrorLog)
 

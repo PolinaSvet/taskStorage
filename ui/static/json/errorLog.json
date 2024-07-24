@@ -68,5 +68,135 @@
     "timestamp": "2024-07-22T14:02:29.1116462+04:00",
     "type": "Inform",
     "message": "Info 2024-07-22 14:02:29.111: {labels_update map[id:1 name:Label_0000000001]} id=1"
+  },
+  {
+    "timestamp": "2024-07-22T16:35:14.822905+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: столбец tasks.name не существует (SQLSTATE 42703)"
+  },
+  {
+    "timestamp": "2024-07-22T16:37:19.5633635+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: в кешированном плане не должен изменяться тип результата (SQLSTATE 0A000)"
+  },
+  {
+    "timestamp": "2024-07-22T16:39:21.2238763+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 16:39:21.223: {tasks_update map[id:1 title:eeeeeee]} значение NULL в столбце \"name\" отношения \"labels\" нарушает ограничение NOT NULLSQL-оператор: \"UPDATE labels SET name = (json_data -\u003e\u003e 'name')::TEXT WHERE id = (json_data -\u003e\u003e 'id')::BIGINT RETURNING id\"\nфункция PL/pgSQL tasks_func_update(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-22T16:47:31.1380675+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 16:47:31.137: {tasks_update map[id:1 title:ndhhntn]} значение NULL в столбце \"name\" отношения \"labels\" нарушает ограничение NOT NULLSQL-оператор: \"UPDATE labels SET name = (json_data -\u003e\u003e 'name')::TEXT WHERE id = (json_data -\u003e\u003e 'id')::BIGINT RETURNING id\"\nфункция PL/pgSQL tasks_func_update(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-22T16:49:11.970576+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 16:49:11.969: {tasks_update map[id:1 title:hhhhhh]} значение NULL в столбце \"name\" отношения \"labels\" нарушает ограничение NOT NULLSQL-оператор: \"UPDATE labels SET name = (json_data -\u003e\u003e 'name')::TEXT WHERE id = (json_data -\u003e\u003e 'id')::BIGINT RETURNING id\"\nфункция PL/pgSQL tasks_func_update(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-22T16:50:20.3526363+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 16:50:20.351: {tasks_delete map[id:69 title:hhhhhh]} id=69"
+  },
+  {
+    "timestamp": "2024-07-22T16:50:38.7091912+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 16:50:38.708: {tasks_update map[id:3 title:hhhhhh]} значение NULL в столбце \"name\" отношения \"labels\" нарушает ограничение NOT NULLSQL-оператор: \"UPDATE labels SET name = (json_data -\u003e\u003e 'name')::TEXT WHERE id = (json_data -\u003e\u003e 'id')::BIGINT RETURNING id\"\nфункция PL/pgSQL tasks_func_update(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-22T16:51:27.0395636+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-22 16:51:27.038: {tasks_insert map[id:3 title:hhhhhh]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-22T16:52:00.6216713+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-22 16:52:00.621: {tasks_delete map[id:2 title:hhhhhh]} id=2"
+  },
+  {
+    "timestamp": "2024-07-23T14:03:11.7061182+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[3]: cannot scan null into *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:04:13.4246304+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[3]: cannot scan null into *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:05:24.0124949+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[3]: cannot scan null into *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:06:14.7275505+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[3]: cannot scan null into *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:07:31.2227901+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[3]: cannot scan null into *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:08:23.3742301+04:00",
+    "type": "Error",
+    "message": "number of field descriptions must equal number of destinations, got 11 and 1"
+  },
+  {
+    "timestamp": "2024-07-23T14:08:56.739107+04:00",
+    "type": "Error",
+    "message": "number of field descriptions must equal number of destinations, got 11 and 1"
+  },
+  {
+    "timestamp": "2024-07-23T14:11:42.0825873+04:00",
+    "type": "Error",
+    "message": "number of field descriptions must equal number of destinations, got 11 and 1"
+  },
+  {
+    "timestamp": "2024-07-23T14:13:49.1566453+04:00",
+    "type": "Error",
+    "message": "number of field descriptions must equal number of destinations, got 11 and 2"
+  },
+  {
+    "timestamp": "2024-07-23T14:15:28.6710199+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[3]: cannot scan null into *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:20:07.7752974+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[3]: cannot scan null into *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:20:48.6470491+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[3]: cannot scan null into *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:26:06.5517919+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[10]: cannot assign *pgtype.TextArray to *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:26:35.4493833+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[10]: cannot assign *pgtype.TextArray to *string"
+  },
+  {
+    "timestamp": "2024-07-23T14:30:10.0743987+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[10]: unable to assign to *sql.NullString"
+  },
+  {
+    "timestamp": "2024-07-23T14:31:14.506908+04:00",
+    "type": "Error",
+    "message": "can't scan into dest[10]: unable to assign to *sql.NullString"
+  },
+  {
+    "timestamp": "2024-07-23T14:31:48.6604282+04:00",
+    "type": "Error",
+    "message": "number of field descriptions must equal number of destinations, got 11 and 10"
   }
 ]
