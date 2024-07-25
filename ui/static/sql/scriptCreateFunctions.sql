@@ -3,7 +3,7 @@
 */
 DROP FUNCTION IF EXISTS users_func_delete, users_func_update, users_func_insert, users_func_select, users_func_view;
 DROP FUNCTION IF EXISTS labels_func_delete, labels_func_update, labels_func_insert, labels_func_select, labels_func_view;
-DROP FUNCTION IF EXISTS tasks_func_delete, tasks_func_update, tasks_func_insert, tasks_func_select,tasks_func_view,tasks_func_delay;
+DROP FUNCTION IF EXISTS tasks_func_delete, tasks_func_update, tasks_func_insert, tasks_func_select,tasks_func_view,tasks_func_delay,tasks_func_insert_pack;
 DROP FUNCTION IF EXISTS tasks_labels_func_delete, tasks_labels_func_update, tasks_labels_func_insert ,tasks_labels_func_view;
 
 --=======================
@@ -323,6 +323,62 @@ BEGIN
 		FALSE
 		)
 	RETURNING id INTO new_id;
+	
+	IF new_id IS NULL THEN
+		RAISE EXCEPTION 'Parameter value cannot be null. ';
+	END IF;
+
+	SELECT json_build_object('id',new_id,'err','') INTO json_result;
+  	RETURN json_result;
+
+EXCEPTION
+    WHEN others THEN
+		GET STACKED DIAGNOSTICS err_context = PG_EXCEPTION_CONTEXT;
+    	GET STACKED DIAGNOSTICS err_mess = MESSAGE_TEXT;
+
+        SELECT json_build_object('id',null,'err',err_mess||err_context) INTO json_result;
+  		RETURN json_result;  
+END;
+$$ LANGUAGE plpgsql;
+
+
+--insert pack
+CREATE FUNCTION tasks_func_insert_pack(
+		json_data jsonb
+) 
+RETURNS jsonb AS $$
+DECLARE
+  	new_id BIGINT;
+	err_mess TEXT;
+	err_context TEXT;
+	json_result jsonb;
+	json_record jsonb;
+BEGIN
+
+	FOR json_record IN SELECT * FROM jsonb_array_elements(json_data)
+    LOOP
+
+		INSERT INTO tasks (
+			dt_opened, 
+			dt_closed_expect, 
+			author_id,
+			assigned_id,
+			title,
+			content,
+			finish
+			) 
+		VALUES (
+			(json_record ->> 'dt_opened')::BIGINT, 
+			(json_record ->> 'dt_closed_expect')::BIGINT, 
+			(json_record ->> 'author_id')::BIGINT, 
+			(json_record ->> 'assigned_id')::BIGINT,
+			(json_record ->> 'title')::TEXT,
+			(json_record ->> 'content')::TEXT,
+			FALSE
+			)
+		RETURNING id INTO new_id;
+
+	END LOOP;
 	
 	IF new_id IS NULL THEN
 		RAISE EXCEPTION 'Parameter value cannot be null. ';

@@ -30,8 +30,9 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 
 		type RequestData struct {
-			Action string                 `json:"action"`
-			Value  map[string]interface{} `json:"value"`
+			Action    string                   `json:"action"`
+			Value     map[string]interface{}   `json:"value"`
+			ValuePack []map[string]interface{} `json:"valuePack"`
 		}
 
 		var requestData RequestData
@@ -46,6 +47,8 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
+
+		//fmt.Printf("%#v", requestData)
 
 		errStr := ""
 		infStr := ""
@@ -69,6 +72,18 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 		//delay
 		if requestData.Action == "check_delay" {
 			id, err := DBase.DelayTasks()
+			if err != nil || id == 0 {
+				errStr = fmt.Sprintf("Error %v: %v %v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, err)
+				logger.SetLogError(fmt.Errorf(errStr))
+			} else {
+				infStr = fmt.Sprintf("Info %v: %v id=%v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, id)
+				logger.SetLogInform(fmt.Errorf(infStr))
+			}
+		}
+
+		//load_pack_data
+		if requestData.Action == "load_pack_data" {
+			id, err := DBase.LoadPackTasks(requestData.ValuePack)
 			if err != nil || id == 0 {
 				errStr = fmt.Sprintf("Error %v: %v %v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, err)
 				logger.SetLogError(fmt.Errorf(errStr))

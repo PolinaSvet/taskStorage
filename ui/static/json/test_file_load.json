@@ -1,0 +1,42 @@
+[
+{
+	"dt_opened": 1721901600000,
+	"dt_closed_expect": 1721988000000,
+	"author_id": 1,
+	"assigned_id": 2,
+	"title": "Titel from json 1",
+	"content": "Content from json 1"
+},
+{
+	"dt_opened": 1721901600000,
+	"dt_closed_expect": 1721988000000,
+	"author_id": 1,
+	"assigned_id": 3,
+	"title": "Titel from json 2",
+	"content": "Content from json 2"
+},
+{
+	"dt_opened": 1721901600000,
+	"dt_closed_expect": 1721988000000,
+	"author_id": 1,
+	"assigned_id": 4,
+	"title": "Titel from json 3",
+	"content": "Content from json 3"
+},
+{
+	"dt_opened": 1721901600000,
+	"dt_closed_expect": 1721988000000,
+	"author_id": 1,
+	"assigned_id": 5,
+	"title": "Titel from json 4",
+	"content": "Content from json 4"
+},
+{
+	"dt_opened": 1721901600000,
+	"dt_closed_expect": 1721988000000,
+	"author_id": 1,
+	"assigned_id": 6,
+	"title": "Titel from json 5",
+	"content": "Content from json 5"
+}
+]

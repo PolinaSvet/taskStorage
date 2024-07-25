@@ -160,6 +160,24 @@ function getSomeValue(selectElement) {
   return someValue;
 }
 
+var tasksActionLoadFileContent = "";
+function tasksActionLoadFile() {
+  const [file] = document.querySelector("input[type=file]").files;
+  const reader = new FileReader();
+
+  reader.addEventListener(
+    "load",
+    () => {
+      tasksActionLoadFileContent = reader.result;
+    },
+    false,
+  );
+
+  if (file) {
+    reader.readAsText(file);
+  }
+}
+
 function tasksAction(action) {
 
     var xhr = new XMLHttpRequest();
@@ -172,6 +190,7 @@ function tasksAction(action) {
     };
 
     var jsonRequest = {};
+    var jsonRequestPack = [];
 
     switch(action) {
       case 'select_all_data':
@@ -217,6 +236,9 @@ function tasksAction(action) {
         jsonRequest["id"] = 0;
         break;
 
+      case 'load_pack_data':
+        jsonRequestPack = JSON.parse(tasksActionLoadFileContent);
+        break;  
 
       default:
         jsonRequest["id"] = 0;
@@ -226,11 +248,10 @@ function tasksAction(action) {
       jsonRequest["id"] = 0;
     }
 
-    console.log(jsonRequest);
-
     var data = {
       action: action,
       value:  jsonRequest,
+      valuePack:  jsonRequestPack
     };
 
     xhr.send(JSON.stringify(data));  

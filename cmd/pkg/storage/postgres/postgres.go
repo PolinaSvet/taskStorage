@@ -63,7 +63,7 @@ func (s *Storage) IUDUsers(nameFunction string, jsonRequest map[string]interface
 	}
 
 	var jsonResponse SqlResponse
-	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1)", jsonRequest).Scan(&jsonResponse)
+	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1);", jsonRequest).Scan(&jsonResponse)
 	if err != nil {
 		return 0, err
 	}
@@ -101,31 +101,6 @@ func (s *Storage) ViewUsers(jsonRequest map[string]interface{}) ([]User, error) 
 	return user, rows.Err()
 }
 
-/*
-func (s *Storage) SelectUsers(userId int) ([]User, error) {
-	rows, err := s.db.Query(context.Background(), `
-		SELECT * FROM users_func_select($1);
-	`,
-		userId,
-	)
-	if err != nil {
-		return nil, err
-	}
-	var user []User
-	for rows.Next() {
-		var t User
-		err = rows.Scan(
-			&t.Id,
-			&t.Name,
-		)
-		if err != nil {
-			return nil, err
-		}
-		user = append(user, t)
-	}
-	return user, rows.Err()
-}
-*/
 // Table: Labels
 type Label struct {
 	Id   int
@@ -140,7 +115,7 @@ func (s *Storage) IUDLabels(nameFunction string, jsonRequest map[string]interfac
 	}
 
 	var jsonResponse SqlResponse
-	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1)", jsonRequest).Scan(&jsonResponse)
+	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1);", jsonRequest).Scan(&jsonResponse)
 	if err != nil {
 		return 0, err
 	}
@@ -178,31 +153,6 @@ func (s *Storage) ViewLabels(jsonRequest map[string]interface{}) ([]Label, error
 	return label, rows.Err()
 }
 
-/*
-func (s *Storage) SelectLabels(labelId int) ([]Label, error) {
-	rows, err := s.db.Query(context.Background(), `
-		SELECT * FROM labels_func_select($1);
-	`,
-		labelId,
-	)
-	if err != nil {
-		return nil, err
-	}
-	var label []Label
-	for rows.Next() {
-		var t Label
-		err = rows.Scan(
-			&t.Id,
-			&t.Name,
-		)
-		if err != nil {
-			return nil, err
-		}
-		label = append(label, t)
-	}
-	return label, rows.Err()
-}
-*/
 // Table: Tasks
 type TaskView struct {
 	Id                   int
@@ -230,7 +180,7 @@ func (s *Storage) IUDTasks(nameFunction string, jsonRequest map[string]interface
 	}
 
 	var jsonResponse SqlResponse
-	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1)", jsonRequest).Scan(&jsonResponse)
+	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1);", jsonRequest).Scan(&jsonResponse)
 	if err != nil {
 		return 0, err
 	}
@@ -301,6 +251,19 @@ func (s *Storage) DelayTasks() (int, error) {
 	return jsonResponse.ID, nil
 }
 
+func (s *Storage) LoadPackTasks(jsonRequest []map[string]interface{}) (int, error) {
+
+	var jsonResponse SqlResponse
+	err := s.db.QueryRow(context.Background(), "SELECT * FROM tasks_func_insert_pack($1);", jsonRequest).Scan(&jsonResponse)
+	if err != nil {
+		return 0, err
+	}
+	if jsonResponse.Err != "" {
+		return 0, fmt.Errorf(jsonResponse.Err)
+	}
+	return jsonResponse.ID, nil
+}
+
 // Table: Tasks
 type TaskLabelView struct {
 	Id         int
@@ -318,7 +281,7 @@ func (s *Storage) IUDTasksLabels(nameFunction string, jsonRequest map[string]int
 	}
 
 	var jsonResponse SqlResponse
-	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1)", jsonRequest).Scan(&jsonResponse)
+	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1);", jsonRequest).Scan(&jsonResponse)
 	if err != nil {
 		return 0, err
 	}

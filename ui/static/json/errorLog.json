@@ -558,5 +558,120 @@
     "timestamp": "2024-07-25T11:18:30.7996536+04:00",
     "type": "Inform",
     "message": "Info 2024-07-25 11:18:30.797: {tasksLabels_delete map[id:3]} id=3"
+  },
+  {
+    "timestamp": "2024-07-25T13:29:58.756319+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 13:29:58.755: {load_pack_data map[id:0]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T13:35:14.7921018+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 13:35:14.791: {load_pack_data map[id:0]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T13:37:21.1035897+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 13:37:21.102: {load_pack_data map[id:0]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T13:40:02.2008978+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 13:40:02.199: {load_pack_data map[id:0]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T13:41:19.8178479+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 13:41:19.816: {load_pack_data map[]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T13:47:44.6242424+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 13:47:44.623: {load_pack_data map[]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T13:49:46.5110648+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 13:49:46.509: {load_pack_data map[]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:03:43.4091667+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:03:43.407: {load_pack_data map[]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:04:19.5457905+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:04:19.543: {load_pack_data map[]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:06:08.9367636+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:06:08.935: {load_pack_data map[]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:16:52.0452983+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:16:52.043: {load_pack_data map[] map[]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:19:19.4882778+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:19:19.487: {load_pack_data map[] [map[author_id:1 content:Content from json 1 dt_opened:1.7219016e+12] map[author_id:1 content:Content from json 2 dt_opened:1.7219016e+12] map[author_id:1 content:Content from json 3 dt_opened:1.7219016e+12]]} извлечь элементы из объекта нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:22:28.0720488+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:22:28.071: {load_pack_data map[] []} Parameter value cannot be null. функция PL/pgSQL tasks_func_insert_pack(jsonb), строка 36, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-25T14:24:24.7169419+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:24:24.715: {load_pack_data map[] []} Parameter value cannot be null. функция PL/pgSQL tasks_func_insert_pack(jsonb), строка 36, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-25T14:25:47.2730544+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 14:25:47.271: {load_pack_data map[] [map[assigned_id:2 author_id:1 content:Content from json 1 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 1] map[assigned_id:3 author_id:1 content:Content from json 2 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 2]]} id=109"
+  },
+  {
+    "timestamp": "2024-07-25T14:28:25.0253675+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:28:25.023: {load_pack_data map[] []} извлечь элементы из скаляра нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:30:02.3530129+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:30:02.351: {load_pack_data map[] []} извлечь элементы из скаляра нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:32:50.6177401+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 14:32:50.614: {load_pack_data map[] []} извлечь элементы из скаляра нельзяфункция PL/pgSQL tasks_func_insert_pack(jsonb), строка 10, оператор FOR по результатам SELECT"
+  },
+  {
+    "timestamp": "2024-07-25T14:38:31.7730721+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 14:38:31.771: {load_pack_data map[] [map[assigned_id:2 author_id:1 content:Content from json 1 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 1] map[assigned_id:3 author_id:1 content:Content from json 2 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 2]]} id=111"
+  },
+  {
+    "timestamp": "2024-07-25T14:40:12.7932886+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 14:40:12.792: {load_pack_data map[] [map[assigned_id:2 author_id:1 content:Content from json 1 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 1] map[assigned_id:3 author_id:1 content:Content from json 2 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 2]]} id=113"
+  },
+  {
+    "timestamp": "2024-07-25T15:07:52.3024695+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 15:07:52.301: {load_pack_data map[] [map[assigned_id:2 author_id:1 content:Content from json 1 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 1] map[assigned_id:3 author_id:1 content:Content from json 2 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 2] map[assigned_id:4 author_id:1 content:Content from json 3 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 3] map[assigned_id:5 author_id:1 content:Content from json 4 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 4] map[assigned_id:6 author_id:1 content:Content from json 5 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 5]]} id=118"
+  },
+  {
+    "timestamp": "2024-07-25T15:09:23.2338419+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 15:09:23.231: {load_pack_data map[id:0] [map[assigned_id:2 author_id:1 content:Content from json 1 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 1] map[assigned_id:3 author_id:1 content:Content from json 2 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 2] map[assigned_id:4 author_id:1 content:Content from json 3 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 3] map[assigned_id:5 author_id:1 content:Content from json 4 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 4] map[assigned_id:6 author_id:1 content:Content from json 5 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 5]]} id=123"
+  },
+  {
+    "timestamp": "2024-07-25T15:09:36.8931291+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 15:09:36.891: {load_pack_data map[id:0] [map[assigned_id:2 author_id:1 content:Content from json 1 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 1] map[assigned_id:3 author_id:1 content:Content from json 2 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 2] map[assigned_id:4 author_id:1 content:Content from json 3 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 3] map[assigned_id:5 author_id:1 content:Content from json 4 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 4] map[assigned_id:6 author_id:1 content:Content from json 5 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 5]]} id=128"
   }
 ]
