@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+{{template "block_head"}}
+<body class="bg-gray-100 font-family-karla flex"  onload="tasksLabelsAction('select_all_data')">
+	{{template "block_left_menu"}}
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+        {{template "block_desktop_header"}}
+        <!-- Desktop Header -->
+        <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+            <main class="w-full flex-grow p-2">
+                <h1 class="text-xl text-black pb-2">{{.PageDescribe}}</h1>
+
+                <!-- Content Start -->
+
+                    <div class="w-full items-center bg-white py-2 px-2 hidden sm:flex top-3">
+
+                      <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                          <li class="py-2 px-2 w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                              <div class="flex items-center ps-3">
+                                  <input id="checkId" type="checkbox" value="0" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                  <label for="checkId" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Id enable</label>
+                              </div>
+                              <div class="relative">
+                                <input type="number" id="inputId" value="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0" required />
+                              </div>
+                          </li>
+                          <li class="py-2 px-2 w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                              <div class="flex items-center ps-3">
+                                  <input id="checkTask" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                  <label for="checkTask" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Task enable</label>
+                              </div>
+                              <div class="relative">
+                                <select id="inputTask" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                  <option selected>Choose a Task</option>
+                                  {{if .ValuesTasks}}
+                                    {{range .ValuesTasks}}
+                                    <option value="{{.Id}}" data-id="{{.Id}}">{{.Title}}</option>
+                                    {{end}}
+                                  {{end}}
+                                </select>
+                            </div>
+                          </li>
+                          <li class="py-2 px-2 w-full dark:border-gray-600">
+                            <div class="flex items-center ps-3">
+                              <input id="checkLabel" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                              <label for="checkLabel" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Label enable</label>
+                          </div>
+                          <div class="relative">
+                            <select id="inputLabel" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                              <option selected>Choose a Label</option>
+                              {{range .ValuesLabels}}
+                                <option value="{{.Id}}" data-id="{{.Id}}">{{.Name}}</option>
+                              {{end}}
+                            </select>
+                          </div>
+                          </li>
+                      </ul>
+                  
+                    </div>
+                
+                    <div class="w-full items-center bg-white py-2 px-2 hidden sm:flex top-3 inline-flex rounded-md space-x-4 w-full">
+                      <button type="button" onclick="tasksLabelsAction('tasksLabels_insert')" class="size-16 tooltip text-gray-700 border border-gray-700 hover:bg-gray-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
+                        <span class="tooltiptext">Add new TasksLabels</span>  
+                        <i class='fas fa-plus-circle' style='font-size:24px'></i>
+                      </button>
+      
+                      <button type="button" onclick="tasksLabelsAction('tasksLabels_update')" class="size-16 tooltip text-gray-700 border border-gray-700 hover:bg-gray-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
+                        <span class="tooltiptext">Update chosen TasksLabels</span> 
+                        <i class='fas fa-sync-alt' style='font-size:24px'></i>
+                      </button>
+                      
+                      <button type="button" onclick="tasksLabelsAction('tasksLabels_delete')" class="size-16 tooltip text-gray-700 border border-gray-700 hover:bg-gray-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
+                        <span class="tooltiptext">Delete chosen TasksLabels</span>  
+                        <i class='fas fa-minus-circle' style='font-size:24px'></i>
+                      </button>
+
+                      <button type="button" onclick="tasksLabelsAction('select_filter_data')" class="size-16 tooltip text-gray-700 border border-gray-700 hover:bg-gray-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
+                        <span class="tooltiptext">Show all TasksLabels</span>   
+                        <i class='fas fa-server' style='font-size:24px'></i>
+                      </button>
+                    </div>
+                    <br>
+                    
+                    <p id="output"></p>  
+          
+              
+              <!-- Content End -->
+
+            </main>
+    
+            {{template "block_footer"}}
+        </div>
+    </div>
+    {{template "block_script"}}
+</body>
+</html>

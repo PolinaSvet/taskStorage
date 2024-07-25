@@ -12,18 +12,18 @@ import (
 	"taskdb/cmd/pkg/storage/postgres"
 )
 
-type TasksHtml struct {
+type TasksLabelsHtml struct {
 	PageDescribe string
 	Error        string
 	Inform       string
-	Values       []postgres.TaskView
-	ValuesUsers  []postgres.User
+	Values       []postgres.TaskLabelView
+	ValuesTasks  []postgres.TaskView
 	ValuesLabels []postgres.Label
 }
 
-func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
+func processHandlerFormTasksLabelsActions(w http.ResponseWriter, r *http.Request) {
 
-	if r.URL.Path != "/formTasksList" {
+	if r.URL.Path != "/formTasksLabelsList" {
 		return
 	}
 
@@ -41,7 +41,7 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		tmpl, err := template.ParseFiles(TasksPageList, TemplatePage)
+		tmpl, err := template.ParseFiles(TasksLabelsPageList, TemplatePage)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -49,26 +49,14 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 
 		errStr := ""
 		infStr := ""
-		var tasksHtml TasksHtml
-		var users []postgres.User
+		var tasksLabelsHtml TasksLabelsHtml
 		var labels []postgres.Label
 		var tasks []postgres.TaskView
+		var tasksLabels []postgres.TaskLabelView
 
 		//insert, update, delete data
-		if strings.Contains(requestData.Action, "tasks_") {
-			id, err := DBase.IUDTasks(requestData.Action, requestData.Value)
-			if err != nil || id == 0 {
-				errStr = fmt.Sprintf("Error %v: %v %v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, err)
-				logger.SetLogError(fmt.Errorf(errStr))
-			} else {
-				infStr = fmt.Sprintf("Info %v: %v id=%v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, id)
-				logger.SetLogInform(fmt.Errorf(infStr))
-			}
-		}
-
-		//delay
-		if requestData.Action == "check_delay" {
-			id, err := DBase.DelayTasks()
+		if strings.Contains(requestData.Action, "tasksLabels_") {
+			id, err := DBase.IUDTasksLabels(requestData.Action, requestData.Value)
 			if err != nil || id == 0 {
 				errStr = fmt.Sprintf("Error %v: %v %v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, err)
 				logger.SetLogError(fmt.Errorf(errStr))
@@ -80,15 +68,15 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 
 		//select all data
 		if (requestData.Action == "select_all_data") || requestData.Action == "select_filter_data" {
-			tasks, err = DBase.ViewTasks(requestData.Value)
+			tasksLabels, err = DBase.ViewTasksLabels(requestData.Value)
 			if err != nil {
 				errStr = err.Error()
 				logger.SetLogError(fmt.Errorf(errStr))
 			}
 		}
-		tasksHtml = TasksHtml{PageDescribe: "Tasks List", Error: errStr, Inform: infStr, Values: tasks, ValuesUsers: users, ValuesLabels: labels}
+		tasksLabelsHtml = TasksLabelsHtml{PageDescribe: "TasksLabels List", Error: errStr, Inform: infStr, Values: tasksLabels, ValuesLabels: labels, ValuesTasks: tasks}
 
-		err = tmpl.Execute(w, tasksHtml)
+		err = tmpl.Execute(w, tasksLabelsHtml)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -101,16 +89,16 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func ServeHTTPFormTasks(w http.ResponseWriter, r *http.Request) {
+func ServeHTTPFormTasksLabels(w http.ResponseWriter, r *http.Request) {
 
-	tmpl, err := template.ParseFiles(TasksPage, TemplatePage)
+	tmpl, err := template.ParseFiles(TasksLabelsPage, TemplatePage)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// open page, load all tables
-	// load useres
+	// load tasks
 	jsonData := `{
 		"id": 0
 	  }`
@@ -121,7 +109,7 @@ func ServeHTTPFormTasks(w http.ResponseWriter, r *http.Request) {
 		logger.SetLogError(fmt.Errorf(errStr))
 	}
 
-	users, err := DBase.ViewUsers(jsonDataMap)
+	tasks, err := DBase.ViewTasks(jsonDataMap)
 	if err != nil {
 		errStr := err.Error()
 		logger.SetLogError(fmt.Errorf(errStr))
@@ -134,7 +122,7 @@ func ServeHTTPFormTasks(w http.ResponseWriter, r *http.Request) {
 		logger.SetLogError(fmt.Errorf(errStr))
 	}
 
-	data := TasksHtml{PageDescribe: "Tasks List", Error: "", Inform: "", Values: nil, ValuesUsers: users, ValuesLabels: labels}
+	data := TasksLabelsHtml{PageDescribe: "TasksLabels List", Error: "", Inform: "", Values: nil, ValuesLabels: labels, ValuesTasks: tasks}
 
 	err = tmpl.Execute(w, data)
 	if err != nil {

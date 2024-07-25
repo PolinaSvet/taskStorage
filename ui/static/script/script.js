@@ -74,6 +74,78 @@ function labelsСhangeBackgroundColor(element, isMouseOver) {
   }
 }
 
+//tasksLabels
+function tasksLabelsAction(action) {
+
+	var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/formTasksLabelsList", true);
+    xhr.setRequestHeader("Content-Type", "application/json");  
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("output").innerHTML = xhr.responseText;
+      }
+    };
+
+    var jsonRequest = {};
+
+    switch(action) {
+      case 'select_all_data':
+        jsonRequest["id"] = 0;
+        break;
+
+      case 'select_filter_data':
+        addToJsonIfTrue(jsonRequest, 'id', parseInt(document.getElementById("inputId").value, 0), document.getElementById("checkId").checked);
+        addToJsonIfTrue(jsonRequest, 'task_id', getSomeValue(document.getElementById('inputTask')), document.getElementById("checkTask").checked);
+        addToJsonIfTrue(jsonRequest, 'label_id', getSomeValue(document.getElementById('inputLabel')), document.getElementById("checkLabel").checked);
+        break;
+      
+      case 'tasksLabels_insert':
+        addToJsonIfTrue(jsonRequest, 'task_id', getSomeValue(document.getElementById('inputTask')), true);
+        addToJsonIfTrue(jsonRequest, 'label_id', getSomeValue(document.getElementById('inputLabel')), true);
+        break;
+
+      case 'tasksLabels_update':
+        addToJsonIfTrue(jsonRequest, 'id', parseInt(document.getElementById("inputId").value, 0), true);
+        addToJsonIfTrue(jsonRequest, 'task_id', getSomeValue(document.getElementById('inputTask')), true);
+        addToJsonIfTrue(jsonRequest, 'label_id', getSomeValue(document.getElementById('inputLabel')), true);
+        break;  
+
+      case 'tasksLabels_delete':
+        addToJsonIfTrue(jsonRequest, 'id', parseInt(document.getElementById("inputId").value, 0), true);
+        break;
+
+      default:
+        jsonRequest["id"] = 0;
+    }
+
+    if (Object.keys(jsonRequest).length === 0 && jsonRequest.constructor === Object) {
+      jsonRequest["id"] = 0;
+    }
+
+    console.log(jsonRequest);
+
+    var data = {
+      action: action,
+      value:  jsonRequest,
+    };
+
+    xhr.send(JSON.stringify(data));  
+}
+
+function tasksLabelsRowClick(id,task_id,label_id) {
+  document.getElementById("inputId").value = id;
+  document.getElementById("inputTask").value = task_id;
+  document.getElementById("inputLabel").value = label_id;
+}
+
+function tasksLabelsСhangeBackgroundColor(element, isMouseOver) {
+  if (isMouseOver) {
+      element.style.backgroundColor = '#F3F4F6'; 
+  } else {
+      element.style.backgroundColor = ''; 
+  }
+}
+
 //tasks
 function addToJsonIfTrue(jsonObject, key, value, enablevalue) {
   if (enablevalue) {

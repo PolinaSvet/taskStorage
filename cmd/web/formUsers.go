@@ -60,7 +60,17 @@ func processHandlerFormUsersActions(w http.ResponseWriter, r *http.Request) {
 		}
 
 		//select all data
-		users, err := DBase.SelectUsers(0)
+		jsonData := `{
+			"id": 0
+		  }`
+		var jsonDataMap map[string]interface{}
+		err = json.Unmarshal([]byte(jsonData), &jsonDataMap)
+		if err != nil {
+			errStr := err.Error()
+			logger.SetLogError(fmt.Errorf(errStr))
+		}
+
+		users, err := DBase.ViewUsers(jsonDataMap)
 		if err != nil {
 			errStr = err.Error()
 			logger.SetLogError(fmt.Errorf(errStr))

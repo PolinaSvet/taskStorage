@@ -503,5 +503,60 @@
     "timestamp": "2024-07-24T22:21:56.6073508+04:00",
     "type": "Inform",
     "message": "Info 2024-07-24 22:21:56.606: {tasks_delete map[id:5]} id=5"
+  },
+  {
+    "timestamp": "2024-07-25T09:53:03.8888817+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 09:53:03.887: {tasksLabels_delete map[id:\u003cnil\u003e]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-25T09:53:24.8107845+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 09:53:24.809: {tasksLabels_insert map[label_id:17 task_id:10]} id=31"
+  },
+  {
+    "timestamp": "2024-07-25T09:53:26.1581483+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 09:53:26.156: {tasksLabels_insert map[label_id:17 task_id:10]} id=32"
+  },
+  {
+    "timestamp": "2024-07-25T09:53:26.5654085+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 09:53:26.564: {tasksLabels_insert map[label_id:17 task_id:10]} id=33"
+  },
+  {
+    "timestamp": "2024-07-25T09:53:26.9456337+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 09:53:26.942: {tasksLabels_insert map[label_id:17 task_id:10]} id=34"
+  },
+  {
+    "timestamp": "2024-07-25T09:53:47.9103145+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 09:53:47.909: {tasksLabels_update map[id:8 label_id:17 task_id:10]} id=8"
+  },
+  {
+    "timestamp": "2024-07-25T09:54:00.2129973+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 09:54:00.211: {tasksLabels_update map[id:8 label_id:18 task_id:10]} id=8"
+  },
+  {
+    "timestamp": "2024-07-25T09:54:10.2725211+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 09:54:10.271: {tasksLabels_delete map[id:\u003cnil\u003e]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-25T11:16:56.3203063+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 11:16:56.310: {tasksLabels_delete map[id:\u003cnil\u003e]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-25T11:18:05.3377389+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 11:18:05.335: {tasksLabels_delete map[id:\u003cnil\u003e]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-25T11:18:30.7996536+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 11:18:30.797: {tasksLabels_delete map[id:3]} id=3"
   }
 ]

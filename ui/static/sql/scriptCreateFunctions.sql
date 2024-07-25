@@ -1,10 +1,10 @@
 /*
 	script to create procedures
 */
-DROP FUNCTION IF EXISTS users_func_delete, users_func_update, users_func_insert, users_func_select;
-DROP FUNCTION IF EXISTS labels_func_delete, labels_func_update, labels_func_insert, labels_func_select;
+DROP FUNCTION IF EXISTS users_func_delete, users_func_update, users_func_insert, users_func_select, users_func_view;
+DROP FUNCTION IF EXISTS labels_func_delete, labels_func_update, labels_func_insert, labels_func_select, labels_func_view;
 DROP FUNCTION IF EXISTS tasks_func_delete, tasks_func_update, tasks_func_insert, tasks_func_select,tasks_func_view,tasks_func_delay;
-DROP FUNCTION IF EXISTS tasks_labels_func_insert;
+DROP FUNCTION IF EXISTS tasks_labels_func_delete, tasks_labels_func_update, tasks_labels_func_insert ,tasks_labels_func_view;
 
 --=======================
 --table: users
@@ -115,6 +115,34 @@ BEGIN
 		WHERE
 			(par_id = 0 OR users.id = par_id)
 		ORDER BY users.id;
+END;
+$$ LANGUAGE plpgsql;
+
+--select view
+CREATE FUNCTION users_func_view(
+		json_data jsonb
+) 
+RETURNS TABLE (
+	id BIGINT,
+    name TEXT
+) AS $$
+DECLARE
+  	par_id BIGINT = 0;
+
+BEGIN
+
+	IF (json_data ->> 'id') IS NOT NULL THEN
+		par_id = (json_data ->> 'id')::BIGINT;
+	END IF;
+
+	RETURN QUERY
+		SELECT users.id,
+			   users.name   
+		FROM users
+		WHERE
+			(par_id = 0 OR users.id = par_id)
+		ORDER BY users.id;
+	
 END;
 $$ LANGUAGE plpgsql;
 
@@ -229,6 +257,34 @@ BEGIN
 		WHERE
 			(par_id = 0 OR labels.id = par_id)
 		ORDER BY labels.id;
+END;
+$$ LANGUAGE plpgsql;
+
+--select view
+CREATE FUNCTION labels_func_view(
+		json_data jsonb
+) 
+RETURNS TABLE (
+	id BIGINT,
+    name TEXT
+) AS $$
+DECLARE
+  	par_id BIGINT = 0;
+
+BEGIN
+
+	IF (json_data ->> 'id') IS NOT NULL THEN
+		par_id = (json_data ->> 'id')::BIGINT;
+	END IF;
+
+	RETURN QUERY
+		SELECT labels.id,
+			   labels.name   
+		FROM labels
+		WHERE
+			(par_id = 0 OR labels.id = par_id)
+		ORDER BY labels.id;
+	
 END;
 $$ LANGUAGE plpgsql;
 
@@ -506,8 +562,8 @@ DECLARE
 	func_name TEXT;
 BEGIN
 	RETURN QUERY
-		SELECT tasks.id,
-			   tasks.title   
+		SELECT tasks.id as id,
+			    CAST(tasks.id AS TEXT) || ') ' || tasks.title as title 
 		FROM tasks
 		WHERE
 			(par_id = 0 OR tasks.id = par_id)
@@ -555,6 +611,127 @@ EXCEPTION
 
         SELECT json_build_object('id',null,'err',err_mess||err_context) INTO json_result;
   		RETURN json_result;  
+END;
+$$ LANGUAGE plpgsql;
+
+--update
+CREATE FUNCTION tasks_labels_func_update(
+		json_data jsonb
+) 
+RETURNS jsonb AS $$
+DECLARE
+  	new_id BIGINT;
+	err_mess TEXT;
+	err_context TEXT;
+	json_result jsonb;
+BEGIN
+
+	UPDATE 
+		tasks_labels 
+	SET 
+		task_id = (json_data ->> 'task_id')::BIGINT,
+		label_id = (json_data ->> 'label_id')::BIGINT
+	WHERE 
+		id = (json_data ->> 'id')::BIGINT 
+	RETURNING id INTO new_id; 
+	
+	IF new_id IS NULL THEN
+		RAISE EXCEPTION 'Parameter value cannot be null. ';
+	END IF;
+
+	SELECT json_build_object('id',new_id,'err','') INTO json_result;
+  	RETURN json_result;
+
+EXCEPTION
+    WHEN others THEN
+		GET STACKED DIAGNOSTICS err_context = PG_EXCEPTION_CONTEXT;
+    	GET STACKED DIAGNOSTICS err_mess = MESSAGE_TEXT;
+
+        SELECT json_build_object('id',null,'err',err_mess||err_context) INTO json_result;
+  		RETURN json_result;  
+END;
+$$ LANGUAGE plpgsql;
+
+
+--delete
+CREATE FUNCTION tasks_labels_func_delete(
+		json_data jsonb
+) 
+RETURNS jsonb AS $$
+DECLARE
+	err_mess TEXT;
+	err_context TEXT;
+	json_result jsonb;
+BEGIN
+
+	DELETE FROM tasks_labels WHERE id = (json_data ->> 'id')::BIGINT; 
+
+	SELECT json_build_object('id',(json_data ->> 'id')::BIGINT,'err','') INTO json_result;
+  	RETURN json_result;
+
+EXCEPTION
+    WHEN others THEN
+		GET STACKED DIAGNOSTICS err_context = PG_EXCEPTION_CONTEXT;
+    	GET STACKED DIAGNOSTICS err_mess = MESSAGE_TEXT;
+
+        SELECT json_build_object('id',null,'err',err_mess||err_context) INTO json_result;
+  		RETURN json_result;  
+END;
+$$ LANGUAGE plpgsql;
+
+--select
+CREATE FUNCTION tasks_labels_func_view(
+		json_data jsonb
+) 
+RETURNS TABLE (
+	id BIGINT,
+    task_id BIGINT, 
+    label_id BIGINT, 
+	task_name TEXT, 
+    label_name TEXT
+) AS $$
+DECLARE
+  	par_id BIGINT = 0;
+    par_task_id BIGINT = 0;
+    par_label_id BIGINT = 0;
+
+BEGIN
+
+	IF (json_data ->> 'id') IS NOT NULL THEN
+		par_id = (json_data ->> 'id')::BIGINT;
+	END IF;
+
+	IF (json_data ->> 'task_id') IS NOT NULL THEN
+		par_task_id = (json_data ->> 'task_id')::BIGINT;
+	END IF;
+
+	IF (json_data ->> 'label_id') IS NOT NULL THEN
+		par_label_id = (json_data ->> 'label_id')::BIGINT;
+	END IF;
+	
+	RETURN QUERY
+		SELECT 
+			tasks_labels.id as id,
+			tasks_labels.task_id as task_id,
+			tasks_labels.label_id as label_id,
+			COALESCE((
+				SELECT CAST(tasks.id AS TEXT) || ') ' || tasks.title 
+				FROM   tasks 
+				WHERE  tasks.id = tasks_labels.task_id
+			), '') as task_name,
+			COALESCE((
+				SELECT labels.name 
+				FROM labels 
+				WHERE labels.id = tasks_labels.label_id
+			), '') as labels_name
+		FROM 
+			tasks_labels
+		WHERE
+			(par_id = 0 OR tasks_labels.id = par_id) AND
+			(par_task_id = 0 OR tasks_labels.task_id = par_task_id) AND 
+			(par_label_id = 0 OR tasks_labels.label_id = par_label_id)
+		ORDER BY 
+			tasks_labels.id;
 END;
 $$ LANGUAGE plpgsql;
 
