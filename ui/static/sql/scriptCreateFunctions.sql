@@ -24,7 +24,7 @@ BEGIN
 	INSERT INTO users (name) VALUES ((json_data ->> 'name')::TEXT) RETURNING id INTO new_id;
 	
 	IF new_id IS NULL THEN
-		RAISE EXCEPTION 'Parameter value cannot be null';
+		RAISE EXCEPTION 'Parameter value cannot be null. ';
 	END IF;
 
 	SELECT json_build_object('id',new_id,'err','') INTO json_result;
@@ -55,7 +55,7 @@ BEGIN
 	UPDATE users SET name = (json_data ->> 'name')::TEXT WHERE id = (json_data ->> 'id')::BIGINT RETURNING id INTO new_id; 
 	
 	IF new_id IS NULL THEN
-		RAISE EXCEPTION 'Parameter value cannot be null';
+		RAISE EXCEPTION 'Parameter value cannot be null. ';
 	END IF;
 
 	SELECT json_build_object('id',new_id,'err','') INTO json_result;
@@ -138,7 +138,7 @@ BEGIN
 	INSERT INTO labels (name) VALUES ((json_data ->> 'name')::TEXT) RETURNING id INTO new_id;
 	
 	IF new_id IS NULL THEN
-		RAISE EXCEPTION 'Parameter value cannot be null';
+		RAISE EXCEPTION 'Parameter value cannot be null. ';
 	END IF;
 
 	SELECT json_build_object('id',new_id,'err','') INTO json_result;
@@ -169,7 +169,7 @@ BEGIN
 	UPDATE labels SET name = (json_data ->> 'name')::TEXT WHERE id = (json_data ->> 'id')::BIGINT RETURNING id INTO new_id; 
 	
 	IF new_id IS NULL THEN
-		RAISE EXCEPTION 'Parameter value cannot be null';
+		RAISE EXCEPTION 'Parameter value cannot be null. ';
 	END IF;
 
 	SELECT json_build_object('id',new_id,'err','') INTO json_result;
@@ -269,7 +269,7 @@ BEGIN
 	RETURNING id INTO new_id;
 	
 	IF new_id IS NULL THEN
-		RAISE EXCEPTION 'Parameter value cannot be null';
+		RAISE EXCEPTION 'Parameter value cannot be null. ';
 	END IF;
 
 	SELECT json_build_object('id',new_id,'err','') INTO json_result;
@@ -297,8 +297,6 @@ DECLARE
 	err_context TEXT;
 	json_result jsonb;
 BEGIN
-
-	UPDATE labels SET name = (json_data ->> 'name')::TEXT WHERE id = (json_data ->> 'id')::BIGINT RETURNING id INTO new_id; 
     
 	UPDATE tasks SET 
 		dt_closed_expect = CASE WHEN (json_data ->> 'dt_closed_expect') IS NOT NULL THEN (json_data ->> 'dt_closed_expect')::BIGINT ELSE dt_closed_expect END,
@@ -308,17 +306,17 @@ BEGIN
 		content = CASE WHEN (json_data ->> 'content') IS NOT NULL THEN (json_data ->> 'content')::TEXT ELSE content END,
 		finish = CASE WHEN (json_data ->> 'finish') IS NOT NULL THEN (json_data ->> 'finish')::BOOL ELSE finish END,
 		dt_closed_finish = CASE 
-	        WHEN (json_data ->> 'finish') IS NOT NULL AND (json_data ->> 'finish')::BOOL = true THEN extract(epoch from now())
+	        WHEN (json_data ->> 'finish') IS NOT NULL AND (json_data ->> 'finish')::BOOL = true THEN (extract(epoch from now())::BIGINT)*1000
 	        WHEN (json_data ->> 'finish') IS NOT NULL AND (json_data ->> 'finish')::BOOL = false THEN NULL
 	        ELSE dt_closed_finish
 	    END
 	WHERE 
-		id = (json_data ->> 'id')::BIGINT
+		id = (json_data ->> 'id')::BIGINT AND finish = FALSE
 	RETURNING id INTO new_id;
 	
 	
 	IF new_id IS NULL THEN
-		RAISE EXCEPTION 'Parameter value cannot be null';
+		RAISE EXCEPTION 'Parameter value cannot be null. A closed task cannot be modified. ';
 	END IF;
 
 	SELECT json_build_object('id',new_id,'err','') INTO json_result;
@@ -375,12 +373,12 @@ BEGIN
 
 	UPDATE tasks SET 
 		delay = CASE 
-			WHEN ((tasks.dt_closed_expect < extract(epoch from now())) AND (tasks.dt_closed_finish IS NULL)) 
+			WHEN ((tasks.dt_closed_expect < (extract(epoch from now())::BIGINT*1000)) AND (tasks.dt_closed_finish IS NULL)) 
 					OR(tasks.dt_closed_expect < tasks.dt_closed_finish)
 			THEN  TRUE
 			ELSE FALSE END;
 	
-	SELECT json_build_object('id',0,'err','') INTO json_result;
+	SELECT json_build_object('id',-1,'err','') INTO json_result;
   	RETURN json_result;
 
 EXCEPTION
@@ -408,8 +406,12 @@ RETURNS TABLE (
     content TEXT,
 	finish BOOL,
 	delay BOOL,
-	label_names TEXT[]
-	
+	label_names TEXT[],
+	dt_closed_expect_int BIGINT, 
+	dt_closed_finish_int BIGINT, 
+	author_id BIGINT, 
+    assigned_id BIGINT
+
 ) AS $$
 DECLARE
   	par_id BIGINT = 0;
@@ -453,9 +455,9 @@ BEGIN
 	RETURN QUERY
 		SELECT 
 			tasks.id as id,
-			COALESCE(TO_CHAR(TO_TIMESTAMP(tasks.dt_opened), 'DD.MM.YYYY HH24:MI:SS'), '') as dt_opened,
-			COALESCE(TO_CHAR(TO_TIMESTAMP(tasks.dt_closed_expect), 'DD.MM.YYYY HH24:MI:SS'), '') as dt_closed_expect, 
-			COALESCE(TO_CHAR(TO_TIMESTAMP(tasks.dt_closed_finish), 'DD.MM.YYYY HH24:MI:SS'), '') as dt_closed_finish, 
+			COALESCE(TO_CHAR(TO_TIMESTAMP(tasks.dt_opened/1000), 'DD.MM.YYYY HH24:MI:SS'), '') as dt_opened, 
+			COALESCE(TO_CHAR(TO_TIMESTAMP(tasks.dt_closed_expect/1000), 'DD.MM.YYYY HH24:MI:SS'), '') as dt_closed_expect, 
+			COALESCE(TO_CHAR(TO_TIMESTAMP(tasks.dt_closed_finish/1000), 'DD.MM.YYYY HH24:MI:SS'), '') as dt_closed_finish, 
 			COALESCE((
 				SELECT users.name 
 				FROM   users 
@@ -475,7 +477,11 @@ BEGIN
 				FROM labels 
 				JOIN tasks_labels ON labels.id = tasks_labels.label_id 
 				WHERE tasks_labels.task_id = tasks.id
-			) AS label_names
+			) AS label_names,
+			COALESCE(tasks.dt_closed_expect, 0) as dt_closed_expect_int,    
+			COALESCE(tasks.dt_closed_finish, 0) as dt_closed_finish_int,
+			COALESCE(tasks.author_id, 0) as author_id,
+			COALESCE(tasks.assigned_id, 0) as assigned_id
 		FROM 
 			tasks
 		WHERE
@@ -536,7 +542,7 @@ BEGIN
 	RETURNING id INTO new_id;
 	
 	IF new_id IS NULL THEN
-		RAISE EXCEPTION 'Parameter value cannot be null';
+		RAISE EXCEPTION 'Parameter value cannot be null. ';
 	END IF;
 
 	SELECT json_build_object('id',new_id,'err','') INTO json_result;

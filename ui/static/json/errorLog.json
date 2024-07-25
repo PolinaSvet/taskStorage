@@ -198,5 +198,310 @@
     "timestamp": "2024-07-23T14:31:48.6604282+04:00",
     "type": "Error",
     "message": "number of field descriptions must equal number of destinations, got 11 and 10"
+  },
+  {
+    "timestamp": "2024-07-24T16:04:16.0044941+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:04:16.003: {tasks_insert map[id:0]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:26:20.752772+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:26:20.752: {tasks_insert map[assigned_id:0 author_id:0 content:map[] dt_closed_expect:0 dt_opened:0 title:map[]]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:26:27.1030559+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:26:27.102: {tasks_insert map[assigned_id:0 author_id:0 content:map[] dt_closed_expect:0 dt_opened:0 title:map[]]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:27:55.3156183+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:27:55.315: {tasks_insert map[assigned_id:0 author_id:0 content:map[] dt_closed_expect:0 dt_opened:0 title:map[]]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:29:10.3388336+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:29:10.338: {tasks_insert map[assigned_id:0 author_id:0 content:hhhhhhhhhh dt_closed_expect:\u003cnil\u003e dt_opened:\u003cnil\u003e title:map[]]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:29:19.5543854+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:29:19.553: {tasks_insert map[assigned_id:0 author_id:0 content:hhhhhhhhhh dt_closed_expect:0 dt_opened:0 title:map[]]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:33:23.1014387+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:33:23.100: {tasks_insert map[content:ADD NEW TASK...]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:35:23.230367+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:35:23.230: {tasks_insert map[content:]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:36:23.1390808+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:36:23.137: {tasks_insert map[content:ADD NEW TASK... content111:]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:37:43.0284136+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:37:43.027: {tasks_insert map[content:ADD NEW TASK... content111:Title new...]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:37:51.1748746+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:37:51.174: {tasks_insert map[content:ADD NEW TASK... content111:Title new...]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:40:38.6303425+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:40:38.629: {tasks_insert map[assigned_id:9 author_id:5 content:map[] dt_closed_expect:0 dt_opened:0 title:map[]]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:44:14.2837848+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 16:44:14.282: {tasks_insert map[assigned_id:0 author_id:0 content:Content new... dt_closed_expect:1.72199784e+12 dt_opened:1.72199784e+12 title:Title new...]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T16:49:05.5364549+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 16:49:05.535: {tasks_insert map[assigned_id:6 author_id:5 content:Content new... dt_closed_expect:1.72122054e+09 dt_opened:1.72061568e+09 title:Title new...]} id=114"
+  },
+  {
+    "timestamp": "2024-07-24T18:43:27.1906715+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 18:43:27.188: {tasks_insert map[assigned_id:0 author_id:0 content:Content new... dt_closed_expect:1.72183218e+09 dt_opened:1.72183218e+09 title:Title new...]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T18:44:05.3179649+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 18:44:05.317: {tasks_insert map[assigned_id:4 author_id:6 content:Content new... dt_closed_expect:1.71993144e+09 dt_opened:1.72010424e+09 title:Title new...]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T18:45:01.2933768+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 18:45:01.292: {tasks_insert map[assigned_id:4 author_id:6 content:Content new... dt_closed_expect:1.72191864e+09 dt_opened:1.72183224e+09 title:Title new...]} id=117"
+  },
+  {
+    "timestamp": "2024-07-24T19:04:56.3999517+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 19:04:56.399: {tasks_insert map[assigned_id:0 author_id:0 content:Content new... dt_closed_expect:\u003cnil\u003e dt_opened:\u003cnil\u003e title:Title new...]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T19:05:23.6491668+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 19:05:23.647: {tasks_insert map[assigned_id:0 author_id:0 content:Content new... dt_closed_expect:1.7219199e+09 dt_opened:1.7218335e+09 title:Title new...]} INSERT или UPDATE в таблице \"tasks\" нарушает ограничение внешнего ключа \"tasks_author_id_fkey\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T19:05:30.9766554+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 19:05:30.975: {tasks_insert map[assigned_id:1 author_id:1 content:Content new... dt_closed_expect:1.7219199e+09 dt_opened:1.7218335e+09 title:Title new...]} id=120"
+  },
+  {
+    "timestamp": "2024-07-24T21:02:59.3977627+04:00",
+    "type": "Error",
+    "message": "number of field descriptions must equal number of destinations, got 15 and 11"
+  },
+  {
+    "timestamp": "2024-07-24T21:35:10.9187695+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:35:10.917: {tasks_delete map[id:2]} id=2"
+  },
+  {
+    "timestamp": "2024-07-24T21:35:24.186194+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:35:24.185: {tasks_delete map[id:3]} id=3"
+  },
+  {
+    "timestamp": "2024-07-24T21:35:59.2411304+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:35:59.240: {tasks_update map[id:0]} Parameter value cannot be nullфункция PL/pgSQL tasks_func_update(jsonb), строка 29, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-24T21:38:14.0960257+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:38:14.094: {tasks_delete map[id:4]} id=4"
+  },
+  {
+    "timestamp": "2024-07-24T21:38:19.6893285+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:38:19.687: {tasks_update map[id:0]} Parameter value cannot be nullфункция PL/pgSQL tasks_func_update(jsonb), строка 29, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-24T21:42:16.5477017+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:42:16.545: {tasks_update map[assigned_id:4 author_id:3 content:Content_0000000003 dt_closed_expect:1.72184053e+12 finish:false id:5 title:Title_0000000003]} значение NULL в столбце \"name\" отношения \"labels\" нарушает ограничение NOT NULLSQL-оператор: \"UPDATE labels SET name = (json_data -\u003e\u003e 'name')::TEXT WHERE id = (json_data -\u003e\u003e 'id')::BIGINT RETURNING id\"\nфункция PL/pgSQL tasks_func_update(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T21:44:28.9998481+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:44:28.997: {tasks_update map[assigned_id:4 author_id:3 content:Content_0000000003 dt_closed_expect:1.72184053e+12 finish:false id:5 title:Title_0000000003]} id=5"
+  },
+  {
+    "timestamp": "2024-07-24T21:45:02.7341487+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:45:02.732: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:true id:5 title:Title_xxxx]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check1\"SQL-оператор: \"UPDATE tasks SET \n\t\tdt_closed_expect = CASE WHEN (json_data -\u003e\u003e 'dt_closed_expect') IS NOT NULL THEN (json_data -\u003e\u003e 'dt_closed_expect')::BIGINT ELSE dt_closed_expect END,\n\t\tauthor_id = CASE WHEN (json_data -\u003e\u003e 'author_id') IS NOT NULL THEN (json_data -\u003e\u003e 'author_id')::BIGINT ELSE author_id END,\n\t\tassigned_id = CASE WHEN (json_data -\u003e\u003e 'assigned_id') IS NOT NULL THEN (json_data -\u003e\u003e 'assigned_id')::BIGINT ELSE assigned_id END,\n\t\ttitle = CASE WHEN (json_data -\u003e\u003e 'title') IS NOT NULL THEN (json_data -\u003e\u003e 'title')::TEXT ELSE title END,\n\t\tcontent = CASE WHEN (json_data -\u003e\u003e 'content') IS NOT NULL THEN (json_data -\u003e\u003e 'content')::TEXT ELSE content END,\n\t\tfinish = CASE WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL THEN (json_data -\u003e\u003e 'finish')::BOOL ELSE finish END,\n\t\tdt_closed_finish = CASE \n\t        WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL AND (json_data -\u003e\u003e 'finish')::BOOL = true THEN extract(epoch from now())\n\t        WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL AND (json_data -\u003e\u003e 'finish')::BOOL = false THEN NULL\n\t        ELSE dt_closed_finish\n\t    END\n\tWHERE \n\t\tid = (json_data -\u003e\u003e 'id')::BIGINT\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_update(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T21:45:23.5777044+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:45:23.577: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:false id:5 title:Title_xxxx]} id=5"
+  },
+  {
+    "timestamp": "2024-07-24T21:45:29.4535973+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:45:29.451: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:true id:5 title:Title_xxxx]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check1\"SQL-оператор: \"UPDATE tasks SET \n\t\tdt_closed_expect = CASE WHEN (json_data -\u003e\u003e 'dt_closed_expect') IS NOT NULL THEN (json_data -\u003e\u003e 'dt_closed_expect')::BIGINT ELSE dt_closed_expect END,\n\t\tauthor_id = CASE WHEN (json_data -\u003e\u003e 'author_id') IS NOT NULL THEN (json_data -\u003e\u003e 'author_id')::BIGINT ELSE author_id END,\n\t\tassigned_id = CASE WHEN (json_data -\u003e\u003e 'assigned_id') IS NOT NULL THEN (json_data -\u003e\u003e 'assigned_id')::BIGINT ELSE assigned_id END,\n\t\ttitle = CASE WHEN (json_data -\u003e\u003e 'title') IS NOT NULL THEN (json_data -\u003e\u003e 'title')::TEXT ELSE title END,\n\t\tcontent = CASE WHEN (json_data -\u003e\u003e 'content') IS NOT NULL THEN (json_data -\u003e\u003e 'content')::TEXT ELSE content END,\n\t\tfinish = CASE WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL THEN (json_data -\u003e\u003e 'finish')::BOOL ELSE finish END,\n\t\tdt_closed_finish = CASE \n\t        WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL AND (json_data -\u003e\u003e 'finish')::BOOL = true THEN extract(epoch from now())\n\t        WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL AND (json_data -\u003e\u003e 'finish')::BOOL = false THEN NULL\n\t        ELSE dt_closed_finish\n\t    END\n\tWHERE \n\t\tid = (json_data -\u003e\u003e 'id')::BIGINT\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_update(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T21:46:10.0122533+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:46:10.011: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:true id:5 title:Title_xxxx]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check1\"SQL-оператор: \"UPDATE tasks SET \n\t\tdt_closed_expect = CASE WHEN (json_data -\u003e\u003e 'dt_closed_expect') IS NOT NULL THEN (json_data -\u003e\u003e 'dt_closed_expect')::BIGINT ELSE dt_closed_expect END,\n\t\tauthor_id = CASE WHEN (json_data -\u003e\u003e 'author_id') IS NOT NULL THEN (json_data -\u003e\u003e 'author_id')::BIGINT ELSE author_id END,\n\t\tassigned_id = CASE WHEN (json_data -\u003e\u003e 'assigned_id') IS NOT NULL THEN (json_data -\u003e\u003e 'assigned_id')::BIGINT ELSE assigned_id END,\n\t\ttitle = CASE WHEN (json_data -\u003e\u003e 'title') IS NOT NULL THEN (json_data -\u003e\u003e 'title')::TEXT ELSE title END,\n\t\tcontent = CASE WHEN (json_data -\u003e\u003e 'content') IS NOT NULL THEN (json_data -\u003e\u003e 'content')::TEXT ELSE content END,\n\t\tfinish = CASE WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL THEN (json_data -\u003e\u003e 'finish')::BOOL ELSE finish END,\n\t\tdt_closed_finish = CASE \n\t        WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL AND (json_data -\u003e\u003e 'finish')::BOOL = true THEN extract(epoch from now())\n\t        WHEN (json_data -\u003e\u003e 'finish') IS NOT NULL AND (json_data -\u003e\u003e 'finish')::BOOL = false THEN NULL\n\t        ELSE dt_closed_finish\n\t    END\n\tWHERE \n\t\tid = (json_data -\u003e\u003e 'id')::BIGINT\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_update(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T21:48:41.5709866+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:48:41.570: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:true id:5 title:Title_xxxx]} id=5"
+  },
+  {
+    "timestamp": "2024-07-24T21:49:19.5702789+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:49:19.569: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72201333e+12 finish:true id:5 title:Title_xxxx]} id=5"
+  },
+  {
+    "timestamp": "2024-07-24T21:50:20.2832542+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:50:20.282: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72201333e+12 finish:true id:5 title:Title_xxxx]} id=5"
+  },
+  {
+    "timestamp": "2024-07-24T21:50:35.7328509+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:50:35.731: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:true id:5 title:Title_xxxx]} id=5"
+  },
+  {
+    "timestamp": "2024-07-24T21:50:54.6707939+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:50:54.668: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:true id:5 title:Title_xxxx]} Parameter value cannot be nullфункция PL/pgSQL tasks_func_update(jsonb), строка 27, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-24T21:51:55.4765484+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:51:55.475: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:true id:5 title:Title_xxxx]} Parameter value cannot be nullфункция PL/pgSQL tasks_func_update(jsonb), строка 27, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-24T21:54:27.9740136+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:54:27.973: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:false id:5 title:Title_xxxx]} Parameter value cannot be nullфункция PL/pgSQL tasks_func_update(jsonb), строка 27, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-24T21:54:52.325253+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 21:54:52.323: {tasks_update map[assigned_id:11 author_id:10 content:Content_xxxx dt_closed_expect:1.72192693e+12 finish:false id:5 title:Title_xxxx]} Parameter value cannot be null. A closed task cannot be modified. функция PL/pgSQL tasks_func_update(jsonb), строка 27, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-24T21:55:14.5547113+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:55:14.553: {tasks_update map[assigned_id:3 author_id:3 content:Content_0000000013 dt_closed_expect:1.72209973e+12 finish:true id:6 title:Title_0000000013]} id=6"
+  },
+  {
+    "timestamp": "2024-07-24T21:55:35.1174138+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:55:35.116: {tasks_insert map[assigned_id:3 author_id:3 content:Content_0000000013 dt_closed_expect:1.72209973e+12 dt_opened:1.7212389e+12 title:Title_0000000013]} id=101"
+  },
+  {
+    "timestamp": "2024-07-24T21:56:08.349248+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 21:56:08.348: {tasks_delete map[id:8]} id=8"
+  },
+  {
+    "timestamp": "2024-07-24T22:08:10.8515219+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:08:10.849: {check_delay map[id:0]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-24T22:08:22.6265937+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:08:22.625: {check_delay map[id:0]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-24T22:08:38.469866+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:08:38.468: {check_delay map[id:0]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-24T22:10:33.7398191+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:10:33.738: {check_delay map[id:0]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-24T22:11:24.1632581+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:11:24.161: {check_delay map[id:0]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-24T22:12:47.6237873+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:12:47.622: {check_delay map[id:0]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-24T22:12:49.3156434+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:12:49.314: {check_delay map[id:0]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-24T22:12:50.4837112+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:12:50.482: {check_delay map[id:0]} \u003cnil\u003e"
+  },
+  {
+    "timestamp": "2024-07-24T22:13:53.125631+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 22:13:53.123: {check_delay map[id:0]} id=-1"
+  },
+  {
+    "timestamp": "2024-07-24T22:16:41.0388849+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 22:16:41.037: {check_delay map[id:0]} id=-1"
+  },
+  {
+    "timestamp": "2024-07-24T22:18:28.8985465+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 22:18:28.896: {check_delay map[id:0]} id=-1"
+  },
+  {
+    "timestamp": "2024-07-24T22:19:07.7457358+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 22:19:07.744: {tasks_update map[assigned_id:1 author_id:1 content:Content_0000000011 dt_closed_expect:1.721931392e+12 finish:true id:2 title:Title_0000000011]} id=2"
+  },
+  {
+    "timestamp": "2024-07-24T22:19:16.915611+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 22:19:16.914: {tasks_update map[assigned_id:2 author_id:1 content:Content_0000000001 dt_closed_expect:1.721758592e+12 finish:true id:1 title:Title_0000000001]} id=1"
+  },
+  {
+    "timestamp": "2024-07-24T22:19:37.3260796+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:19:37.324: {tasks_update map[assigned_id:2 author_id:1 content:Content_0000000001 dt_closed_expect:1.721758592e+12 finish:true id:1 title:Title_0000000001]} Parameter value cannot be null. A closed task cannot be modified. функция PL/pgSQL tasks_func_update(jsonb), строка 27, оператор RAISE"
+  },
+  {
+    "timestamp": "2024-07-24T22:19:54.5164831+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:19:54.514: {tasks_insert map[assigned_id:2 author_id:1 content:Content_0000000001 dt_closed_expect:1.721758592e+12 dt_opened:\u003cnil\u003e title:Title_0000000001]} значение NULL в столбце \"dt_opened\" отношения \"tasks\" нарушает ограничение NOT NULLSQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T22:20:00.3870457+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-24 22:20:00.385: {tasks_insert map[assigned_id:2 author_id:1 content:Content_0000000001 dt_closed_expect:1.721758592e+12 dt_opened:1.72184514e+12 title:Title_0000000001]} новая строка в отношении \"tasks\" нарушает ограничение-проверку \"tasks_check\"SQL-оператор: \"INSERT INTO tasks (\n\t\tdt_opened, \n\t\tdt_closed_expect, \n\t\tauthor_id,\n\t\tassigned_id,\n\t\ttitle,\n\t\tcontent,\n\t\tfinish\n\t\t) \n\tVALUES (\n\t\t(json_data -\u003e\u003e 'dt_opened')::BIGINT, \n\t\t(json_data -\u003e\u003e 'dt_closed_expect')::BIGINT, \n\t\t(json_data -\u003e\u003e 'author_id')::BIGINT, \n\t\t(json_data -\u003e\u003e 'assigned_id')::BIGINT,\n\t\t(json_data -\u003e\u003e 'title')::TEXT,\n\t\t(json_data -\u003e\u003e 'content')::TEXT,\n\t\tFALSE\n\t\t)\n\tRETURNING id\"\nфункция PL/pgSQL tasks_func_insert(jsonb), строка 9, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-24T22:20:05.2431429+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 22:20:05.241: {tasks_insert map[assigned_id:2 author_id:1 content:Content_0000000001 dt_closed_expect:1.721931392e+12 dt_opened:1.72184514e+12 title:Title_0000000001]} id=103"
+  },
+  {
+    "timestamp": "2024-07-24T22:21:56.6073508+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-24 22:21:56.606: {tasks_delete map[id:5]} id=5"
   }
 ]

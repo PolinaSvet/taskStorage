@@ -3,6 +3,8 @@
 
   <div">
 
+  
+
   {{if .Error}} 
     <div class="flex p-4 mb-4 text-sm space-x-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-red-800 dark:text-red-400" role="alert">
         <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -32,7 +34,7 @@
     <div class="relative overflow-x-auto">
     <ul role="list" class="max-w divide-y divide-gray-200 dark:divide-gray-700">
       {{range .Values}}
-        <li class="py-3 sm:py-4" onmouseover="tasksСhangeBackgroundColor(this, true)" onmouseout="tasksСhangeBackgroundColor(this, false)" onclick="tasksRowClick('{{.Id}}')">
+        <li class="py-3 sm:py-4" onmouseover="tasksСhangeBackgroundColor(this, true)" onmouseout="tasksСhangeBackgroundColor(this, false)" onclick="tasksOpenDialog('tasks_update','{{.Id}}','{{.Dt_closed_expect_int}}','{{.Finish}}','{{.Author_id}}','{{.Assigned_id}}','{{.Title}}','{{.Content}}')" ">
             <div class="flex items-center space-x-3 rtl:space-x-reverse">
                 <span class="inline-flex items-center text-sm font-medium text-gray-900 px-2.5 py-0.5 rounded-full  {{if .Delay}}bg-red-300{{else}}bg-green-300{{end}} ">
                   {{.Id}}
@@ -48,12 +50,28 @@
                       dt_finish: {{.Dt_closed_finish}}
                     </p>
                 </div>
+                <div class="flex-1 min-w-0" style="display: none;">
+                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                    {{.Dt_closed_expect_int}}
+                  </p>
+                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                    {{.Dt_closed_finish_int}}
+                  </p>
+                </div>
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-900 truncate dark:text-white">
                     Author..: {{.Author}}
                   </p>
                   <p class="text-sm text-gray-700 truncate dark:text-gray-400">
                     Assigned: {{.Assigned}}
+                  </p>
+                </div>
+                <div class="flex-1 min-w-0" style="display: none;">
+                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                    {{.Author_id}}
+                  </p>
+                  <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                    {{.Assigned_id}}
                   </p>
                 </div>
                 <div class="flex-1 min-w-0">
@@ -82,90 +100,7 @@
         </li>
         {{end}}
     </ul>
-  </div>
-
-
-    <div class="relative overflow-x-auto">
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                  <th width="10%" scope="col" class="px-6 py-3">
-                    Id
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Dt_opened
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Dt_closed_expect
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Dt_closed_finish
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Author
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Assigned
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Title
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Content
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Finish
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Delay
-                  </th>
-                  <th width="90%" scope="col" class="px-6 py-3">
-                    Label_names
-                  </th>
-              </tr>
-          </thead>
-          <tbody>
-              {{range .Values}}
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" onclick="usersRowClick('{{.Id}}','{{.Title}}')">
-                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
-                    {{.Id}}
-                  </th>
-                  <td class="px-6 py-4">
-                    {{.Dt_opened}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Dt_closed_expect}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Dt_closed_finish}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Author}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Assigned}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Title}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Content}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Finish}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Delay}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{.Label_names}}
-                  </td>
-              </tr>
-              {{end}}
-          </tbody>
-      </table>
     </div>
-    </br>
     
     </div>
 

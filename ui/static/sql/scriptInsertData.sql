@@ -48,8 +48,8 @@ BEGIN
 	WHILE i <= 50 LOOP
 		str001 := 'Title_' || LPAD(i::TEXT, 10, '0');
 		str002 := 'Content_' || LPAD(i::TEXT, 10, '0');
-		bi001 := extract(epoch from now())::BIGINT;
-		bi002 := extract(epoch from now())::BIGINT+ (i * 24 * 60 * 60) ;
+		bi001 := (extract(epoch from now())::BIGINT- (i*2 * 24 * 60 * 60))*1000;
+		bi002 := (extract(epoch from now())::BIGINT- (i*1 * 24 * 60 * 60))*1000;
     	PERFORM * FROM tasks_func_insert(('{
 		  "dt_opened": '||bi001||',
 		  "dt_closed_expect": '||bi002||',
@@ -61,8 +61,8 @@ BEGIN
 
 		str001 := 'Title_' || LPAD((i+10)::TEXT, 10, '0');
 		str002 := 'Content_' || LPAD((i+10)::TEXT, 10, '0');
-		bi001 := extract(epoch from now())::BIGINT;
-		bi002 := extract(epoch from now())::BIGINT+ (i * 24 * 60 * 60) ;
+		bi001 := (extract(epoch from now())::BIGINT*1000);
+		bi002 := (extract(epoch from now())::BIGINT+ (i * 24 * 60 * 60))*1000;
     	PERFORM * FROM tasks_func_insert(('{
 		  "dt_opened": '||bi001||',
 		  "dt_closed_expect": '||bi002||',

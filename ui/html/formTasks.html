@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {{template "block_head"}}
-<body class="bg-gray-100 font-family-karla flex"  onload="tasksAction('select_all')">
+<body class="bg-gray-100 font-family-karla flex"  onload="tasksAction('select_all_data')">
 	{{template "block_left_menu"}}
     <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
         {{template "block_desktop_header"}}
@@ -11,31 +11,178 @@
                 <h1 class="text-xl text-black pb-2">{{.PageDescribe}}</h1>
 
                 <!-- Content Start -->
-              <header class="w-full items-center bg-white py-2 px-2 hidden sm:flex top-3">
-                      <div class="flex flex-col justify-between p-1 leading-normal">
-                          <h5 class="mb-2 text font-bold tracking-tight text-gray-900 dark:text-white">Tasks actions:</h5>
-                          <br><br>
-                          <div class="inline-flex rounded-md space-x-4 w-full" role="group">
-                          
-                              <div class="relative">
-                                <input type="text" id="inputId" value="0" readonly class="block rounded-t-lg px-2.5 pb-1.5 pt-4 w-24 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label for="inputId" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-3 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Id:</label>
-                              </div>
 
-                              <div class="relative">
-                                <input type="text" id="inputTitle" value="-" class="block rounded-t-lg px-2.5 pb-1.5 pt-4 w-64 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label for="inputTitle" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-3 scale-75 top-3 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Name:</label>
-                              </div>
+                <div class="w-full items-center bg-white py-2 px-2 hidden sm:flex top-3">
 
-               
+                  <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                      <li class="py-2 px-2 w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                          <div class="flex items-center ps-3">
+                              <input id="checkId" type="checkbox" value="0" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                              <label for="checkId" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Id enable</label>
                           </div>
-                         
+                          <div class="relative">
+                            <input type="number" id="inputId" value="0" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="0" required />
+                          </div>
+                      </li>
+                      <li class="py-2 px-2 w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                          <div class="flex items-center ps-3">
+                              <input id="checkAuthor" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                              <label for="checkAuthor" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Author enable</label>
+                          </div>
+                          <div class="relative">
+                            <select id="inputAuthor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                              <option selected>Choose a Author</option>
+                              {{if .ValuesUsers}}
+                                {{range .ValuesUsers}}
+                                <option value="{{.Name}}" data-id="{{.Id}}">{{.Name}}</option>
+                                {{end}}
+                              {{end}}
+                            </select>
+                        </div>
+                      </li>
+                      <li class="py-2 px-2 w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                          <div class="flex items-center ps-3">
+                              <input id="checkAssigned" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                              <label for="checkAssigned" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Assigned enable</label>
+                          </div>
+                          <div class="relative">
+                            <select id="inputAssigned" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                              <option selected>Choose a Assigned</option>
+                              {{range .ValuesUsers}}
+                              <option value="{{.Name}}" data-id="{{.Id}}">{{.Name}}</option>
+                              {{end}}
+                            </select>
+                        </div>
+                      </li>
+                      <li class="py-2 px-2 w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div class="flex items-center ps-3">
+                            <input id="checkLabel" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="checkLabel" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Label enable</label>
+                        </div>
+                        <div class="relative">
+                          <select id="inputLabel" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a Label</option>
+                            {{range .ValuesLabels}}
+                              <option value="{{.Name}}" data-id="{{.Id}}">{{.Name}}</option>
+                            {{end}}
+                          </select>
+                        </div>
+                      </li>
+                      <li class="py-2 px-2 w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div class="flex items-center ps-3">
+                            <input id="checkFinish" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="checkFinish" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Finish enable</label>
+                        </div>
+                        <div class="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                          <input id="inputFinish" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                          <label for="inputFinish" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Finish</label>
+                        </div>
+                      </li>
+                      <li class="py-2 px-2 w-full dark:border-gray-600">
+                          <div class="flex items-center ps-3">
+                              <input id="checkDelay" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                              <label for="checkDelay" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delay enable</label>
+                          </div>
+                          <div class="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input id="inputDelay" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="inputDelay" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delay</label>
+                          </div>
+                      </li>
+                  </ul>
+              
+                </div>
+             
+                <div class="w-full items-center bg-white py-2 px-2 hidden sm:flex top-3 inline-flex rounded-md space-x-4 w-full">
+                  <button type="button" onclick="tasksAction('select_filter_data')" class="size-16 tooltip text-gray-700 border border-gray-700 hover:bg-gray-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
+                    <span class="tooltiptext">Show tasks</span>   
+                    <i class='fas fa-server' style='font-size:24px'></i>
+                  </button>
+
+                  <button type="button" onclick="tasksOpenDialog('tasks_insert','0')" class="size-16 tooltip text-gray-700 border border-gray-700 hover:bg-gray-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
+                    <span class="tooltiptext">Add new task</span>  
+                    <i class='fas fa-plus-circle' style='font-size:24px'></i>
+                  </button>
+
+                  <button type="button" onclick="tasksAction('check_delay')" class="size-16 tooltip text-gray-700 border border-gray-700 hover:bg-gray-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded text-sm p-2.5 text-center inline-flex items-center dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800 dark:hover:bg-gray-500">
+                    <span class="tooltiptext">Check task</span>  
+                    <i class='fas fa-exclamation-circle' style='font-size:24px'></i>
+                  </button>
+
+                </div>
+                <br>
+
+
+                <p id="output"></p> 
+
+                
+                <div id="dialogForm" class="dialog-form">
+                  <div class="mb-6">
+                    <label id="formCaption" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Task</label>
+                    <label id="formId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
+                  </div>
+                  
+                  <!-- <form>-->
+
+                    <div class="grid gap-6 mb-6 md:grid-cols-2">
+                      <div id="formDivDt_opened">
+                          <label for="formDt_opened" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dt_opened:</label>
+                          <input id="formDt_opened" type="datetime-local" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
                       </div>
-              </header>
-              <br>
-              <p id="output"></p> 
-         
-              <!-- Content End -->
+                      <div>
+                          <label for="formDt_closed" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dt_closed:</label>
+                          <input id="formDt_closed" type="datetime-local" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                      </div>
+                      <div id="formDivFinish">
+                        <label for="formFinish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Finish:</label>
+                        <input id="formFinish" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                      </div>
+                      <div>
+                          <label for="formAuthor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author:</label>
+                          <select id="formAuthor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a Author</option>
+                            {{if .ValuesUsers}}
+                              {{range .ValuesUsers}}
+                              <option value="{{.Id}}" data-id="{{.Id}}">{{.Name}}</option>
+                              {{end}}
+                            {{end}}
+                          </select>
+                      </div>  
+                      <div>
+                          <label for="formAassigned" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aassigned:</label>
+                          <select id="formAassigned" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a Assigned</option>
+                            {{range .ValuesUsers}}
+                            <option value="{{.Id}}" data-id="{{.Id}}">{{.Name}}</option>
+                            {{end}}
+                          </select>
+                      </div>
+                      <div>
+                          <label for="formTitle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title:</label>
+                          <input type="text" id="formTitle" value="Title new..." class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="-" required />
+                      </div>
+                      <div>
+                          <label for="formContent" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content:</label>
+                          <input type="text" id="formContent" value="Content new..." class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="-" required />
+                      </div>
+                    </div>
+                    <!-- 
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
+                        <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required />
+                    </div> 
+                     -->
+                    
+                    <div class="grid grid-cols-4 gap-1 place-items-stretch">
+                      <button type="submit" id="formBtAdd" onclick="tasksAction('tasks_insert')" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-70">ADD</button>
+                      <button type="submit" id="formBtUpdate" onclick="tasksAction('tasks_update')" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-70">UPDATE</button>
+                      <button type="submit" id="formBtDelete" onclick="tasksAction('tasks_delete')" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-70">DELETE</button>
+                      <button type="submit" id="formBtClose" onclick="tasksCloseDialog()" class="bg-gray-100 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-70">X</button>
+                    </div>
+                   <!-- </form>-->
+                
+                </div>
+      
+                <!-- Content End -->
 
             </main>
     

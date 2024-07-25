@@ -7,6 +7,7 @@
    <meta name="description" content="">
   <link rel="icon" type="image/x-icon" href="/ui/static/img/task_img.png">
   <script src="/ui/static/script/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
    <!-- Tailwind -->
    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
    <style>
@@ -28,6 +29,8 @@
        .tab button:hover {  background-color: #ddd;} /* Change background color of buttons on hover */
        .tab button.active {  background-color: #ccc;} /* Create an active/current tablink class */
        .tabcontent {  display: none;  padding: 6px 12px;  border: 1px solid #ccc;  border-top: none;} /* Style the tab content */
+       .dialog-form { display: none;  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);  padding: 20px;  background-color: #f4f4f4; border: 1px solid #ccc; }
+
    </style>
 </head>
 {{end}}
@@ -57,7 +60,7 @@
         Messages Log
        </a> 
    </nav>
-   <a href="https://github.com/PolinaSvet/web_example_v001.git" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
+   <a href="https://github.com/PolinaSvet/taskStorage/tree/master" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
        <i class="fas fa-arrow-circle-up mr-3"></i>
        Go to GitHub
    </a>
@@ -107,7 +110,7 @@
                 <i class="fas fa-exclamation-circle mr-3"></i>
                 Messages Log
             </a>
-             <button class="w-full bg-white cta-btn font-semibold py-2 mt-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+             <button href="https://github.com/PolinaSvet/taskStorage/tree/master" class="w-full bg-white cta-btn font-semibold py-2 mt-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                  <i class="fas fa-arrow-circle-up mr-3"></i> Go to GitHub
              </button>
          </nav>

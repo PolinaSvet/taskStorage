@@ -144,17 +144,21 @@ func (s *Storage) SelectLabels(labelId int) ([]Label, error) {
 
 // Table: Tasks
 type TaskView struct {
-	Id               int
-	Dt_opened        string
-	Dt_closed_expect string
-	Dt_closed_finish string
-	Author           string
-	Assigned         string
-	Title            string
-	Content          string
-	Finish           bool
-	Delay            bool
-	Label_names      []string
+	Id                   int
+	Dt_opened            string
+	Dt_closed_expect     string
+	Dt_closed_finish     string
+	Author               string
+	Assigned             string
+	Title                string
+	Content              string
+	Finish               bool
+	Delay                bool
+	Label_names          []string
+	Dt_closed_expect_int int
+	Dt_closed_finish_int int
+	Author_id            int
+	Assigned_id          int
 }
 
 func (s *Storage) IUDTasks(nameFunction string, jsonRequest map[string]interface{}) (int, error) {
@@ -163,8 +167,6 @@ func (s *Storage) IUDTasks(nameFunction string, jsonRequest map[string]interface
 	if !ok {
 		return 0, fmt.Errorf("error: no name function %s", nameFunction)
 	}
-
-	println(nameFunction, funcSql, jsonRequest)
 
 	var jsonResponse SqlResponse
 	err := s.db.QueryRow(context.Background(), "SELECT * FROM "+funcSql+"($1)", jsonRequest).Scan(&jsonResponse)
@@ -205,6 +207,10 @@ func (s *Storage) ViewTasks(jsonRequest map[string]interface{}) ([]TaskView, err
 			&t.Finish,
 			&t.Delay,
 			&labelNamesJSON,
+			&t.Dt_closed_expect_int,
+			&t.Dt_closed_finish_int,
+			&t.Author_id,
+			&t.Assigned_id,
 		)
 		if err != nil {
 			return nil, err
@@ -216,9 +222,20 @@ func (s *Storage) ViewTasks(jsonRequest map[string]interface{}) ([]TaskView, err
 		}
 		t.Label_names = labelNames
 
-		//fmt.Printf("%#v\n", labelNamesJSON)
-
 		task = append(task, t)
 	}
 	return task, rows.Err()
+}
+
+func (s *Storage) DelayTasks() (int, error) {
+
+	var jsonResponse SqlResponse
+	err := s.db.QueryRow(context.Background(), "SELECT * FROM tasks_func_delay();").Scan(&jsonResponse)
+	if err != nil {
+		return 0, err
+	}
+	if jsonResponse.Err != "" {
+		return 0, fmt.Errorf(jsonResponse.Err)
+	}
+	return jsonResponse.ID, nil
 }

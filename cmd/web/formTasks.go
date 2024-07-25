@@ -13,9 +13,12 @@ import (
 )
 
 type TasksHtml struct {
-	Error  string
-	Inform string
-	Values []postgres.TaskView
+	PageDescribe string
+	Error        string
+	Inform       string
+	Values       []postgres.TaskView
+	ValuesUsers  []postgres.User
+	ValuesLabels []postgres.Label
 }
 
 func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
@@ -46,6 +49,10 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 
 		errStr := ""
 		infStr := ""
+		var tasksHtml TasksHtml
+		var users []postgres.User
+		var labels []postgres.Label
+		var tasks []postgres.TaskView
 
 		//insert, update, delete data
 		if strings.Contains(requestData.Action, "tasks_") {
@@ -59,21 +66,29 @@ func processHandlerFormTasksActions(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
-		//select all data
-
-		jsonData := `{
-			"id": 0
-		  }`
-		var data map[string]interface{}
-		err = json.Unmarshal([]byte(jsonData), &data)
-		tasks, err := DBase.ViewTasks(data)
-		if err != nil {
-			errStr = err.Error()
-			logger.SetLogError(fmt.Errorf(errStr))
+		//delay
+		if requestData.Action == "check_delay" {
+			id, err := DBase.DelayTasks()
+			if err != nil || id == 0 {
+				errStr = fmt.Sprintf("Error %v: %v %v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, err)
+				logger.SetLogError(fmt.Errorf(errStr))
+			} else {
+				infStr = fmt.Sprintf("Info %v: %v id=%v", time.Now().Format("2006-01-02 15:04:05.000"), requestData, id)
+				logger.SetLogInform(fmt.Errorf(infStr))
+			}
 		}
-		tasksHtml_ := TasksHtml{Error: errStr, Inform: infStr, Values: tasks}
 
-		err = tmpl.Execute(w, tasksHtml_)
+		//select all data
+		if (requestData.Action == "select_all_data") || requestData.Action == "select_filter_data" {
+			tasks, err = DBase.ViewTasks(requestData.Value)
+			if err != nil {
+				errStr = err.Error()
+				logger.SetLogError(fmt.Errorf(errStr))
+			}
+		}
+		tasksHtml = TasksHtml{PageDescribe: "Tasks List", Error: errStr, Inform: infStr, Values: tasks, ValuesUsers: users, ValuesLabels: labels}
+
+		err = tmpl.Execute(w, tasksHtml)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -94,7 +109,22 @@ func ServeHTTPFormTasks(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := TypePage{PageDescribe: "Tasks List"}
+	// open page, load all tables
+	// load useres
+	users, err := DBase.SelectUsers(0)
+	if err != nil {
+		errStr := err.Error()
+		logger.SetLogError(fmt.Errorf(errStr))
+	}
+
+	//load labels
+	labels, err := DBase.SelectLabels(0)
+	if err != nil {
+		errStr := err.Error()
+		logger.SetLogError(fmt.Errorf(errStr))
+	}
+
+	data := TasksHtml{PageDescribe: "Tasks List", Error: "", Inform: "", Values: nil, ValuesUsers: users, ValuesLabels: labels}
 
 	err = tmpl.Execute(w, data)
 	if err != nil {

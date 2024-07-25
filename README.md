@@ -12,6 +12,7 @@
 - Added table "Users" and functions for working with it: insert, update, delete, select
 - Added table "Labels" and functions for working with it: insert, update, delete, select
 - Added messages file 
+- Added table "Tasks" and functions for working with it: insert, update, delete, select
 
 
 ## Usage:
