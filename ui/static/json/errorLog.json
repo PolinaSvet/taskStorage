@@ -673,5 +673,210 @@
     "timestamp": "2024-07-25T15:09:36.8931291+04:00",
     "type": "Inform",
     "message": "Info 2024-07-25 15:09:36.891: {load_pack_data map[id:0] [map[assigned_id:2 author_id:1 content:Content from json 1 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 1] map[assigned_id:3 author_id:1 content:Content from json 2 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 2] map[assigned_id:4 author_id:1 content:Content from json 3 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 3] map[assigned_id:5 author_id:1 content:Content from json 4 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 4] map[assigned_id:6 author_id:1 content:Content from json 5 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 5]]} id=128"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:05.6421348+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице users (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:05.6597574+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице labels (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:06.9583654+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:19.3631879+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:19.3769229+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице labels (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:19.418832+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks_labels (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:21.9233588+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице users (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:23.1388284+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице users (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:23.1554228+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице labels (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T15:40:23.1828857+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-25T16:00:09.4329285+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:00:09.432: {check_delay map[id:0] []} id=-1"
+  },
+  {
+    "timestamp": "2024-07-25T16:00:36.0492027+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:00:36.045: {tasks_update map[assigned_id:2 author_id:1 content:Content_0000000001 dt_closed_expect:1.721822333e+12 finish:true id:1 title:Title_0000000001] []} id=1"
+  },
+  {
+    "timestamp": "2024-07-25T16:01:16.4091176+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:01:16.407: {tasks_update map[assigned_id:2 author_id:2 content:Content_0000000011ччч dt_closed_expect:1.722002333e+12 finish:true id:2 title:Title_0000000011ччч] []} id=2"
+  },
+  {
+    "timestamp": "2024-07-25T16:01:30.2471255+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:01:30.244: {tasks_delete map[id:3] []} id=3"
+  },
+  {
+    "timestamp": "2024-07-25T16:01:45.6702782+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:01:45.669: {tasks_insert map[assigned_id:3 author_id:2 content:Content_0000000002 dt_closed_expect:1.721735933e+12 dt_opened:1.72113126e+12 title:Title_0000000002] []} id=101"
+  },
+  {
+    "timestamp": "2024-07-25T16:02:16.3024997+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:02:16.300: {load_pack_data map[id:0] [map[assigned_id:2 author_id:1 content:Content from json 1 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 1] map[assigned_id:3 author_id:1 content:Content from json 2 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 2] map[assigned_id:4 author_id:1 content:Content from json 3 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 3] map[assigned_id:5 author_id:1 content:Content from json 4 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 4] map[assigned_id:6 author_id:1 content:Content from json 5 dt_closed_expect:1.721988e+12 dt_opened:1.7219016e+12 title:Titel from json 5]]} id=106"
+  },
+  {
+    "timestamp": "2024-07-25T16:02:52.6231406+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:02:52.621: {tasksLabels_insert map[label_id:1 task_id:1]} id=31"
+  },
+  {
+    "timestamp": "2024-07-25T16:03:04.8300836+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:03:04.827: {tasksLabels_insert map[label_id:8 task_id:1]} id=32"
+  },
+  {
+    "timestamp": "2024-07-25T16:03:07.3664257+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:03:07.365: {tasksLabels_insert map[label_id:12 task_id:1]} id=33"
+  },
+  {
+    "timestamp": "2024-07-25T16:03:28.4701407+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:03:28.468: {tasksLabels_update map[id:1 label_id:1 task_id:2]} id=1"
+  },
+  {
+    "timestamp": "2024-07-25T16:03:35.951769+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:03:35.949: {tasksLabels_update map[id:1 label_id:2 task_id:2]} id=1"
+  },
+  {
+    "timestamp": "2024-07-25T16:03:46.4828801+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:03:46.481: {tasksLabels_delete map[id:30]} id=30"
+  },
+  {
+    "timestamp": "2024-07-25T16:04:23.8507119+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 16:04:23.848: {labels_delete map[id:3 name:Label_0000000003]} UPDATE или DELETE в таблице \"labels\" нарушает ограничение внешнего ключа \"tasks_labels_label_id_fkey\" таблицы \"tasks_labels\"SQL-оператор: \"DELETE FROM labels WHERE id = (json_data -\u003e\u003e 'id')::BIGINT\"\nфункция PL/pgSQL labels_func_delete(jsonb), строка 8, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-25T16:04:29.1438714+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:04:29.142: {labels_delete map[id:25 name:Label_0000000025]} id=25"
+  },
+  {
+    "timestamp": "2024-07-25T16:04:34.7550222+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:04:34.753: {labels_insert map[id:2 name:Label_0000000002ееее]} id=101"
+  },
+  {
+    "timestamp": "2024-07-25T16:04:42.6180609+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:04:42.616: {labels_update map[id:2 name:Label_0000000002уууууу]} id=2"
+  },
+  {
+    "timestamp": "2024-07-25T16:04:53.8937863+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:04:53.892: {users_update map[id:2 name:User_0000000002пппп]} id=2"
+  },
+  {
+    "timestamp": "2024-07-25T16:04:56.512176+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:04:56.510: {users_insert map[id:2 name:User_0000000002пппп]} id=101"
+  },
+  {
+    "timestamp": "2024-07-25T16:05:00.2626531+04:00",
+    "type": "Error",
+    "message": "Error 2024-07-25 16:05:00.261: {users_delete map[id:7 name:User_0000000007]} UPDATE или DELETE в таблице \"users\" нарушает ограничение внешнего ключа \"tasks_author_id_fkey\" таблицы \"tasks\"SQL-оператор: \"DELETE FROM users WHERE id = (json_data -\u003e\u003e 'id')::BIGINT\"\nфункция PL/pgSQL users_func_delete(jsonb), строка 8, оператор SQL-оператор"
+  },
+  {
+    "timestamp": "2024-07-25T16:05:07.7454389+04:00",
+    "type": "Inform",
+    "message": "Info 2024-07-25 16:05:07.744: {users_delete map[id:79 name:User_0000000079]} id=79"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:03.4251128+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:05.6889444+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:07.1627374+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице users (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:10.3726036+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице labels (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:11.3428559+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:11.3523421+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице labels (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:11.3851726+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks_labels (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:12.461253+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице users (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:12.4771995+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице labels (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:12.5170596+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице tasks (SQLSTATE 42501)"
+  },
+  {
+    "timestamp": "2024-07-26T10:12:13.7197216+04:00",
+    "type": "Error",
+    "message": "ОШИБКА: нет доступа к таблице users (SQLSTATE 42501)"
   }
 ]

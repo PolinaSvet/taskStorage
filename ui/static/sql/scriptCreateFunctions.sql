@@ -1,9 +1,9 @@
 /*
 	script to create procedures
 */
-DROP FUNCTION IF EXISTS users_func_delete, users_func_update, users_func_insert, users_func_select, users_func_view;
-DROP FUNCTION IF EXISTS labels_func_delete, labels_func_update, labels_func_insert, labels_func_select, labels_func_view;
-DROP FUNCTION IF EXISTS tasks_func_delete, tasks_func_update, tasks_func_insert, tasks_func_select,tasks_func_view,tasks_func_delay,tasks_func_insert_pack;
+DROP FUNCTION IF EXISTS users_func_delete, users_func_update, users_func_insert, users_func_view;
+DROP FUNCTION IF EXISTS labels_func_delete, labels_func_update, labels_func_insert, labels_func_view;
+DROP FUNCTION IF EXISTS tasks_func_delete, tasks_func_update, tasks_func_insert, tasks_func_view,tasks_func_delay,tasks_func_insert_pack;
 DROP FUNCTION IF EXISTS tasks_labels_func_delete, tasks_labels_func_update, tasks_labels_func_insert ,tasks_labels_func_view;
 
 --=======================
@@ -95,26 +95,6 @@ EXCEPTION
 
         SELECT json_build_object('id',null,'err',err_mess||err_context) INTO json_result;
   		RETURN json_result;  
-END;
-$$ LANGUAGE plpgsql;
-
---select
-CREATE FUNCTION users_func_select(
-		par_id BIGINT
-) 
-RETURNS TABLE (id BIGINT, name TEXT) AS $$
-DECLARE
-  	new_id BIGINT;
-	new_err TEXT;
-	func_name TEXT;
-BEGIN
-	RETURN QUERY
-		SELECT users.id,
-			   users.name   
-		FROM users
-		WHERE
-			(par_id = 0 OR users.id = par_id)
-		ORDER BY users.id;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -240,25 +220,6 @@ EXCEPTION
 END;
 $$ LANGUAGE plpgsql;
 
---select
-CREATE FUNCTION labels_func_select(
-		par_id BIGINT
-) 
-RETURNS TABLE (id BIGINT, name TEXT) AS $$
-DECLARE
-  	new_id BIGINT;
-	new_err TEXT;
-	func_name TEXT;
-BEGIN
-	RETURN QUERY
-		SELECT labels.id,
-			   labels.name   
-		FROM labels
-		WHERE
-			(par_id = 0 OR labels.id = par_id)
-		ORDER BY labels.id;
-END;
-$$ LANGUAGE plpgsql;
 
 --select view
 CREATE FUNCTION labels_func_view(
@@ -605,25 +566,6 @@ BEGIN
 			(par_delay IS NULL OR tasks.delay = par_delay)
 		ORDER BY 
 			tasks.id;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE FUNCTION tasks_func_select(
-		par_id BIGINT
-) 
-RETURNS TABLE (id BIGINT, title TEXT) AS $$
-DECLARE
-  	new_id BIGINT;
-	new_err TEXT;
-	func_name TEXT;
-BEGIN
-	RETURN QUERY
-		SELECT tasks.id as id,
-			    CAST(tasks.id AS TEXT) || ') ' || tasks.title as title 
-		FROM tasks
-		WHERE
-			(par_id = 0 OR tasks.id = par_id)
-		ORDER BY tasks.id;
 END;
 $$ LANGUAGE plpgsql;
 
