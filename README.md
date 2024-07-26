@@ -101,20 +101,20 @@
 Работа клиентa описана:
 
 - Таблица (Пользователи) ***users***:
-***ui\html\formUsers.html***
-***ui\html\formUsersList.html***
+***ui\html\formUsers.html***<br>
+***ui\html\formUsersList.html***<br>
 
 - Таблица (Метки) ***labels***:
-***ui\html\formLabels.html***
-***ui\html\formLabelsList.html***
+***ui\html\formLabels.html***<br>
+***ui\html\formLabelsList.html***<br>
 
 - Таблица (Задачи) ***tasks***:
-***ui\html\formTasks.html***
-***ui\html\formTasksList.html***
+***ui\html\formTasks.html***<br>
+***ui\html\formTasksList.html***<br>
 
 - Таблица (Связь многие-ко-многим между задачами и метками) ***tasks_labels***:
-***ui\html\formTasksLabels.html***
-***ui\html\formTasksLabelsList.html***
+***ui\html\formTasksLabels.html***<br>
+***ui\html\formTasksLabelsList.html***<br>
 
 Дополнительно используются:
 - ***ui\static\script\script.js***
