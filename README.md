@@ -13,35 +13,35 @@
 
 Используется следующая структура БД:
 
-- Таблица (Пользователи) ***users***
-Пользовательские функции для работы с таблицей:
-***users_func_insert(jsonb)*** - вставка данных
-***users_func_update(jsonb)*** - обновление данных
-***users_func_delete(jsonb)*** - удаление данных
-***users_func_view(jsonb)*** - выборка данных
+- Таблица (Пользователи) ***users***<br>
+Пользовательские функции для работы с таблицей:<br>
+***users_func_insert(jsonb)*** - вставка данных<br>
+***users_func_update(jsonb)*** - обновление данных<br>
+***users_func_delete(jsonb)*** - удаление данных<br>
+***users_func_view(jsonb)*** - выборка данных<br>
 
-- Таблица (Метки) ***labels***
-Пользовательские функции для работы с таблицей:
-***labels_func_insert(jsonb)*** - вставка данных
-***labels_func_update(jsonb)*** - обновление данных
-***labels_func_delete(jsonb)*** - удаление данных
-***labels_func_view(jsonb)*** - выборка данных
+- Таблица (Метки) ***labels***<br>
+Пользовательские функции для работы с таблицей:<br>
+***labels_func_insert(jsonb)*** - вставка данных<br>
+***labels_func_update(jsonb)*** - обновление данных<br>
+***labels_func_delete(jsonb)*** - удаление данных<br>
+***labels_func_view(jsonb)*** - выборка данных<br>
 
-- Таблица (Задачи) ***tasks***
-Пользовательские функции для работы с таблицей:
-***tasks_func_insert(jsonb)*** - вставка данных
-***tasks_func_update(jsonb)*** - обновление данных
-***tasks_func_delete(jsonb)*** - удаление данных
-***tasks_func_view(jsonb)*** - выборка данных по фильтру
-***tasks_func_insert_pack(jsonb)*** - создание массива задач
-***tasks_func_delay()*** - проверка задач на успешность выполнения(просрочена поставленная задача или нет)
+- Таблица (Задачи) ***tasks***<br>
+Пользовательские функции для работы с таблицей:<br>
+***tasks_func_insert(jsonb)*** - вставка данных<br>
+***tasks_func_update(jsonb)*** - обновление данных<br>
+***tasks_func_delete(jsonb)*** - удаление данных<br>
+***tasks_func_view(jsonb)*** - выборка данных по фильтру<br>
+***tasks_func_insert_pack(jsonb)*** - создание массива задач<br>
+***tasks_func_delay()*** - проверка задач на успешность выполнения(просрочена поставленная задача или нет)<br>
 
-- Таблица (Связь многие-ко-многим между задачами и метками) ***tasks_labels***
-Пользовательские функции для работы с таблицей:
-***tasks_labels_func_insert(jsonb)*** - вставка данных
-***tasks_labels_func_update(jsonb)*** - обновление данных
-***tasks_labels_func_delete(jsonb)*** - удаление данных
-***tasks_labels_func_view(jsonb)*** - выборка данных по фильтру
+- Таблица (Связь многие-ко-многим между задачами и метками) ***tasks_labels***<br>
+Пользовательские функции для работы с таблицей:<br>
+***tasks_labels_func_insert(jsonb)*** - вставка данных<br>
+***tasks_labels_func_update(jsonb)*** - обновление данных<br>
+***tasks_labels_func_delete(jsonb)*** - удаление данных<br>
+***tasks_labels_func_view(jsonb)*** - выборка данных по фильтрум<br>
 
 Для загрузки конфигурации БД используем следующие скрипты:
 
@@ -60,27 +60,27 @@
 
 Используется следующая структура:
 
-- Таблица (Пользователи) ***users***, структура: ***type User struct***
-Пользовательские функции для работы с таблицей:
-**func (s *Storage) IUDUsers(nameFunction string, jsonRequest map[string]interface{}) (int, error)*** - вставка, обновление, удаление
-**func (s *Storage) ViewUsers(jsonRequest map[string]interface{}) ([]User, error)*** - выборка данных
+- Таблица (Пользователи) ***users***, структура: ***type User struct***<br>
+Пользовательские функции для работы с таблицей:<br>
+**func (s *Storage) IUDUsers(nameFunction string, jsonRequest map[string]interface{}) (int, error)*** - вставка, обновление, удаление<br>
+**func (s *Storage) ViewUsers(jsonRequest map[string]interface{}) ([]User, error)*** - выборка данных<br>
 
-- Таблица (Метки) ***labels***, структура: ***type Label struct***
-Пользовательские функции для работы с таблицей:
-**func (s *Storage) IUDLabels(nameFunction string, jsonRequest map[string]interface{}) (int, error)*** - вставка, обновление, удаление
-**func (s *Storage) ViewLabels(jsonRequest map[string]interface{}) ([]User, error)*** - выборка данных
+- Таблица (Метки) ***labels***, структура: ***type Label struct***<br>
+Пользовательские функции для работы с таблицей:<br>
+**func (s *Storage) IUDLabels(nameFunction string, jsonRequest map[string]interface{}) (int, error)*** - вставка, обновление, удаление<br>
+**func (s *Storage) ViewLabels(jsonRequest map[string]interface{}) ([]User, error)*** - выборка данных<br>
 
-- Таблица (Задачи) ***tasks***, структура: ***type TaskView struct***
-Пользовательские функции для работы с таблицей:
-**func (s *Storage) IUDTasks(nameFunction string, jsonRequest map[string]interface{}) (int, error)*** - вставка, обновление, удаление
-**func (s *Storage) ViewTasks(jsonRequest map[string]interface{}) ([]TaskView, error)*** - выборка данных по фильтру
-**func (s *Storage) LoadPackTasks(jsonRequest []map[string]interface{}) (int, error)*** - создание массива задач
-**func (s *Storage) DelayTasks() (int, error)*** - проверка задач на успешность выполнения(просрочена поставленная задача или нет)
+- Таблица (Задачи) ***tasks***, структура: ***type TaskView struct***<br>
+Пользовательские функции для работы с таблицей:<br>
+**func (s *Storage) IUDTasks(nameFunction string, jsonRequest map[string]interface{}) (int, error)*** - вставка, обновление, удаление<br>
+**func (s *Storage) ViewTasks(jsonRequest map[string]interface{}) ([]TaskView, error)*** - выборка данных по фильтру<br>
+**func (s *Storage) LoadPackTasks(jsonRequest []map[string]interface{}) (int, error)*** - создание массива задач<br>
+**func (s *Storage) DelayTasks() (int, error)*** - проверка задач на успешность выполнения(просрочена поставленная задача или нет)<br>
 
-- Таблица (Связь многие-ко-многим между задачами и метками) ***tasks_labels***, структура: ***type TaskLabelView struct***
-Пользовательские функции для работы с таблицей:
-**func (s *Storage) IUDTasksLabels(nameFunction string, jsonRequest map[string]interface{}) (int, error)*** - вставка, обновление, удаление
-**func (s *Storage) ViewTasksLabels(jsonRequest map[string]interface{}) ([]TaskLabelView, error)*** - выборка данных по фильтру
+- Таблица (Связь многие-ко-многим между задачами и метками) ***tasks_labels***, структура: ***type TaskLabelView struct***<br>
+Пользовательские функции для работы с таблицей:<br>
+**func (s *Storage) IUDTasksLabels(nameFunction string, jsonRequest map[string]interface{}) (int, error)*** - вставка, обновление, удаление<br>
+**func (s *Storage) ViewTasksLabels(jsonRequest map[string]interface{}) ([]TaskLabelView, error)*** - выборка данных по фильтру<br>
 
  Работа с клиентом описана:
 
