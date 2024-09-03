@@ -2,7 +2,7 @@
 # PostgreSQL + Go
 
 <div align="center">
-	<img src="https://i.ibb.co/YQQpSb3/tasks.jpg">
+	<img src="screen.jpg"  width="100%" height="100%">
 </div>
 
 ## Структура программы:
